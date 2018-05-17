@@ -19,6 +19,8 @@ export class SimpleAlertProvider {
 
   showTitleWithMessage(title, message){ 
 
+    this.loading !== null ? this.dismissLoading() : null;
+
     let alert = this.alertCtrl.create({
       title: title,
       message: message,

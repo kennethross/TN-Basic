@@ -17,6 +17,7 @@ import { LoginControlProvider } from '../providers/login-control/login-control';
 import { UserTacServiceProvider } from '../providers/user-tac-service/user-tac-service';
 import { SimpleAlertProvider } from '../providers/simple-alert/simple-alert';
 import { IonicStorageModule } from '@ionic/storage';
+import { ErrorHandlerProvider } from '../providers/error-handler/error-handler';
 @NgModule({
   declarations: [
     MyApp,
@@ -45,6 +46,7 @@ import { IonicStorageModule } from '@ionic/storage';
     UserDataProvider,
     LoginControlProvider,
     SimpleAlertProvider,
+    ErrorHandlerProvider,
     
   ]
 })

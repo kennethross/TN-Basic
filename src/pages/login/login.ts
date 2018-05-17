@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { 
   IonicPage, 
-  NavController, 
   NavParams,
   ViewController } from 'ionic-angular';
+
+import { NgForm } from '@angular/forms/src/directives/ng_form';
+
 import { SimpleAlertProvider } from '../../providers/simple-alert/simple-alert';
 import { UserDataProvider } from '../../providers/user-data/user-data';
 import { UserTacServiceProvider } from '../../providers/user-tac-service/user-tac-service';
@@ -22,7 +24,7 @@ import { UserTacServiceProvider } from '../../providers/user-tac-service/user-ta
 })
 export class LoginPage {
 
-  userLogin = { username: 'chokkuan99@gmail.com', password: '123456' };
+  userLogin = { username: 'chokkuan@gmail.com', password: '123456' };
 
   constructor(
     public userData: UserDataProvider,
@@ -36,22 +38,21 @@ export class LoginPage {
     console.log('ionViewDidLoad LoginPage');
   }
 
-  loginTapped(){
+  loginTapped(logForm: NgForm){
+    console.log(logForm);
     this.login();
   }
 
   login(){
     this.simpleAlert.showLoadingWithMessage("");
-    this.userTacService.doLogin(this.userLogin).subscribe( auth => {
-      console.log(auth);
-      //TODO
-      // save the authToken in userData
-      this.userData.saveAuthCredsLocally(auth);
-      this.simpleAlert.showSuccessWithMessage("Success");
+
+    this.userData.userLogIn(this.userLogin).then( res => {
+      this.simpleAlert.showSuccessWithMessage("Successfully");
       this.dismiss();
-    }, err => { 
-      this.simpleAlert.showErrorWithMessage("error");
+    }, err => {
       console.log(err);
+      this.simpleAlert.showTitleWithMessage("Error : " + err.code, err.description );
+      // this.simpleAlert.showErrorWithMessage(err.description);
     });
   }
 

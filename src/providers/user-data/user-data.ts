@@ -3,8 +3,10 @@ import { ModalController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import {
   AuthCredential,} from '../../app/model/model';
+import { UserTacServiceProvider } from '../../providers/user-tac-service/user-tac-service';
 
 const STORAGE_AUTHENTICATION_CREDS = "authenticationCredentials";
+const STORAGE_USER_CREDS = "userCredentials"
 /*
   Generated class for the UserDataProvider provider.
 
@@ -14,28 +16,47 @@ const STORAGE_AUTHENTICATION_CREDS = "authenticationCredentials";
 @Injectable()
 export class UserDataProvider {
 
-  islogIn = false;
-  authCred: AuthCredential;
-
   constructor(
+    public userTacService: UserTacServiceProvider,
     public storage: Storage,
     public modalCtrl: ModalController) {
     console.log('Hello UserDataProvider Provider');
-    this.getAuthCredsLocally().then( auth => {
-
-      if(auth){
-        this.authCred = auth;
-        this.islogIn = true;
-      // console.log("Authentication Credentials", this.authCred);
-      }
-    })
+  
   }
 
+  isUserLogin(): Promise<any>{
+    return new Promise<any>( isLogin => {
+      this.getAuthCredsLocally().then( auth => {
+        console.log(auth);
+        if(auth){
+          isLogin(true);
+        }else{
+          isLogin(false);
+        }
+      })
+    })
+  }
 
   //Authentication
   // 1. Save authentication
   // 2. GET Authentication
   // 3. Delete Authentication
+
+  saveUserCredsLocally(userCreds){
+    this.storage.set(STORAGE_USER_CREDS, userCreds);
+  }
+
+  getUserCredsLocally(): Promise<any>{
+    return this.storage.get(STORAGE_USER_CREDS);
+  }
+
+  deleteUserCredsLocally(){
+    this.storage.remove(STORAGE_USER_CREDS);
+  }
+
+  // #######################################
+  // ########### Authentication ############
+  // #######################################
 
   saveAuthCredsLocally(auth){
     var authCred = new AuthCredential();
@@ -52,16 +73,41 @@ export class UserDataProvider {
     this.storage.remove(STORAGE_AUTHENTICATION_CREDS);
   }
 
-  isUserLogin(): Promise<any>{
-    return new Promise<any>( isLogin => {
-      this.getAuthCredsLocally().then( auth => {
-        console.log(auth);
-        if(auth){
-          isLogin(true);
-        }else{
-          isLogin(false);
-        }
-      })
-    })
+  clearStorageAfterLogout(){
+    this.storage.clear();
+  }
+
+  // #######################################
+  // ########## Auth Tac Service ###########
+  // #######################################
+
+  userLogIn(userCreds){
+    return new Promise<any>((resolve, reject) => {
+      this.userTacService.doLogin(userCreds).subscribe( auth => {
+        this.saveAuthCredsLocally(auth);
+        resolve();
+      }, err => {
+        console.log("User data Managfer login : ", err);
+        reject(err);
+      });
+    });
+  }
+
+  userLogOut(){
+    return new Promise<any>((resolve, reject) => {
+      this.getAuthCredsLocally().then( val => {
+        let auth:AuthCredential = val;
+        
+        this.userTacService.doLogout(auth).subscribe( response => {
+          //TODO
+          //  clean the cache all user stuff 
+          this.clearStorageAfterLogout();
+          resolve(response);
+        }, err => {
+          reject(err);
+        });
+
+      });
+    });
   }
 }

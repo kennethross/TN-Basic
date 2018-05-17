@@ -24,7 +24,6 @@ export class LoginControlProvider {
 
   loginControl(): Promise<any> {
     return new Promise<any>( done => {
-
       this.userData.isUserLogin().then( isLogin => {
         if(isLogin){
           //no need to pop out

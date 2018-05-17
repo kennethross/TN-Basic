@@ -1,3 +1,16 @@
 page-home {
+    ion-navbar {
+        // ion-title {
+        //     color: black;
+        // }
+        button {
+            background-color: transparent;
+        }
 
+        ion-icon {
+            // background-color: transparent;
+            color: black;
+            font-size: 25px;
+        }
+    }
 }
