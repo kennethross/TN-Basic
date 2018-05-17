@@ -1,0 +1,31 @@
+page-login {
+
+    .background{
+        background: url('../assets/imgs/login-bg.png') no-repeat;
+        background-size: cover;
+        background-position: center; 
+        margin: auto; 
+        z-index: 2; 
+    }
+
+    .item {
+        border-color: rgba(0, 0, 0, 0);
+        background-color: rgba(0, 0, 0, 0);
+        color: white; 
+
+        label {
+            font-size: 15pt;
+        }
+    }
+
+    .usernameField {
+        font-size: 30px;
+    }
+
+    .tagline {
+        color: white;
+        text-align: center;
+        font-size: 12pt;
+    }
+}
+
