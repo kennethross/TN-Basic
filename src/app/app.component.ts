@@ -26,7 +26,17 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage }
+      { title: '1', component: ListPage },
+      { title: '2', component: ListPage },
+      { title: '3', component: ListPage },
+      { title: '4', component: ListPage },
+      { title: '5', component: ListPage },
+      { title: '6', component: ListPage },
+      { title: '7', component: ListPage },
+      { title: '8', component: ListPage },
+      { title: '9', component: ListPage },
+      { title: '10', component: ListPage },
+
     ];
 
   }

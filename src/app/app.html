@@ -1,8 +1,40 @@
 <ion-menu [content]="content">
   <ion-header>
-    <ion-toolbar>
-      <ion-title>Menu</ion-title>
-    </ion-toolbar>
+    <!-- <ion-grid> -->
+      <ion-row class="row-top-header">
+       
+        <ion-col col-2 class="col-left">
+          <img src="./assets/icon/eventLogo.png">
+        </ion-col>
+        <ion-col align-self-center text-left class="col-mid">
+          WeExpo
+        </ion-col>
+        <ion-col align-self-center col-2 class="col-right">
+          <img src="./assets/icon/switch.png">
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="row-mid-header">
+          <img class="img-avatar" src="./assets/imgs/avatar.png" alt="Avatar">
+      </ion-row>
+
+      <ion-row class="row-bottom-header">
+        
+        <ion-col align-self-center col-2 class="col-left">
+            <img src="./assets/icon/gear.png">
+        </ion-col>
+
+        <ion-col align-self-center text-center class="col-mid">
+          Kenneth Palermo
+        </ion-col>
+
+        <ion-col col-2 class="col-right">
+          <img src="./assets/icon/edit.png">
+        </ion-col>
+
+      </ion-row>
+
+    <!-- </ion-grid> -->
   </ion-header>
 
   <ion-content>
@@ -13,6 +45,9 @@
     </ion-list>
   </ion-content>
 
+  <ion-footer>
+    Footer
+  </ion-footer>
 </ion-menu>
 
 <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->

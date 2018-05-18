@@ -14,3 +14,87 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+ion-menu {
+
+    ion-header {
+        background-color: white;
+        height: 35%;
+
+        .row-top-header {
+            height: 20%;
+            // background-color: white;
+
+            .col-left{
+                // background-color: transparent;
+            }
+
+            .col-mid{
+                // background-color: transparent;
+            }
+
+            .col-right {
+                // background-color: transparent;
+            }
+        }
+
+        .row-mid-header {
+            height: 60%;
+            // background-color: aqua;
+
+            .img-avatar {
+                border-radius: 50%;
+                // width: 80px;
+                // height: 80px;
+
+                display: block;
+                margin-top: auto;
+                margin-left: auto;
+                margin-right: auto;
+                margin-bottom: auto;
+                width: 40%;
+                // height:50%;
+              }
+        }
+
+        .row-bottom-header {
+            height: 20%;
+            // background-color: beige;
+
+            .col-left{
+                // background-color: transparent;
+                img {
+                    display: block;
+                    margin-top: auto;
+                    margin-left: auto;
+                    margin-right: auto;
+                    margin-bottom: auto;
+                    width: 70%;
+                }
+                
+            }
+
+            .col-mid{
+                // background-color: transparent;
+            }
+
+            .col-right {
+                // background-color: transparent;
+                img {
+                    display: block;
+                    margin-top: auto;
+                    margin-left: auto;
+                    margin-right: auto;
+                    margin-bottom: auto;
+                    width: 70%;
+                }
+            }
+        }
+    }
+
+    ion-footer {
+        background-color: green;
+        height: 8%;
+    }
+    
+}

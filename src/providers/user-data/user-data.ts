@@ -37,11 +37,6 @@ export class UserDataProvider {
     })
   }
 
-  //Authentication
-  // 1. Save authentication
-  // 2. GET Authentication
-  // 3. Delete Authentication
-
   saveUserCredsLocally(userCreds){
     this.storage.set(STORAGE_USER_CREDS, userCreds);
   }
@@ -57,6 +52,11 @@ export class UserDataProvider {
   // #######################################
   // ########### Authentication ############
   // #######################################
+
+    //Authentication
+  // 1. Save authentication
+  // 2. GET Authentication
+  // 3. Delete Authentication
 
   saveAuthCredsLocally(auth){
     var authCred = new AuthCredential();
@@ -85,6 +85,7 @@ export class UserDataProvider {
     return new Promise<any>((resolve, reject) => {
       this.userTacService.doLogin(userCreds).subscribe( auth => {
         this.saveAuthCredsLocally(auth);
+        this.saveUserCredsLocally(userCreds);
         resolve();
       }, err => {
         console.log("User data Managfer login : ", err);
@@ -99,8 +100,6 @@ export class UserDataProvider {
         let auth:AuthCredential = val;
         
         this.userTacService.doLogout(auth).subscribe( response => {
-          //TODO
-          //  clean the cache all user stuff 
           this.clearStorageAfterLogout();
           resolve(response);
         }, err => {
