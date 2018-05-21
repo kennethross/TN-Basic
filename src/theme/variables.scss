@@ -34,19 +34,27 @@ $app-direction: ltr;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #488aff,
-  secondary:  #32db64,
+  primary:    rgb(0, 164, 248),
+  tangerin: rgb(245,145,2),
+  secondary:  #FEEF24,
   danger:     #f53d3d,
-  light:      #f4f4f4,
-  dark:       #222
+  dark:       #374850,
+  bg-content: #374850,
+  hot:#f53d3d,
+  titleHeader: rgb(52,52,52),
+  primary-fontcolor: rgb(135,135,135),
+  light: #f4f4f4,
 );
 
+$toolbar-md-title-text-color: map-get($colors, white);
+$toolbar-ios-title-text-color: map-get($colors, white);
+$toolbar-wp-title-text-color: map-get($colors, white);
 
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
 
-
+$grid-padding-width:         10px !default;
 
 
 // App Material Design Variables

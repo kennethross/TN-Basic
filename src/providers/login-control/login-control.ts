@@ -47,4 +47,23 @@ export class LoginControlProvider {
     });
   }
 
+  // login(userCreds){
+  //   return new Promise<any>((resolve, reject) => {
+  //     this.userData.userLogIn(userCreds).then( res => {
+  //       resolve(res);
+  //     }, err => {
+  //       reject(err);
+  //     });
+  //   });
+  // }
+
+  logout(){
+    return new Promise<any>((resolve, reject) => {
+      this.userData.userLogOut().then( () => {
+        resolve();
+      }, err => {
+        reject(err);
+      });
+    });
+  }
 }

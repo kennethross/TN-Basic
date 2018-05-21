@@ -9,6 +9,8 @@ import { ListPage } from '../pages/list/list';
 
 import { LoginPage } from '../pages/login/login';
 import { LoginPageModule } from '../pages/login/login.module';
+import { DashboardPage } from '../pages/dashboard/dashboard';
+import { DashboardPageModule } from '../pages/dashboard/dashboard.module'; 
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -28,6 +30,7 @@ import { ErrorHandlerProvider } from '../providers/error-handler/error-handler';
     BrowserModule,
     LoginPageModule,
     HttpClientModule,
+    DashboardPageModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
   ],
@@ -37,6 +40,7 @@ import { ErrorHandlerProvider } from '../providers/error-handler/error-handler';
     HomePage,
     ListPage,
     LoginPage,
+    DashboardPage,
   ],
   providers: [
     StatusBar,

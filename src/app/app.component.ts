@@ -4,8 +4,20 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
-import { UserTacServiceProvider } from '../providers/user-tac-service/user-tac-service';
+import { DashboardPage } from '../pages/dashboard/dashboard';
+import { SimpleAlertProvider } from '../providers/simple-alert/simple-alert';
+import { LoginControlProvider } from '../providers/login-control/login-control';
+
+export interface PageInterface {
+  title: string;
+  name: string;
+  component: any;
+  icon: string;
+  logsOut?: boolean;
+  index?: number;
+  tabName?: string;
+  tabComponent?: any;
+}
 
 @Component({
   templateUrl: 'app.html'
@@ -13,32 +25,33 @@ import { UserTacServiceProvider } from '../providers/user-tac-service/user-tac-s
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  // rootPage: any = HomePage;
+  rootPage: any;
 
-  pages: Array<{title: string, component: any}>;
+  mainPages: Array<PageInterface> = [
+    { title: 'Dashboard', name: "", logsOut: false, component: DashboardPage, index: 0, icon:"wifi" },
+    { title: 'Visitor', name: "", logsOut: false, component: HomePage, index: 0, icon:"people" },
+    { title: 'Kiosk Mode', name: "", logsOut: false, component: HomePage, index: 0, icon:"tablet-portrait" }
+  ];
 
+  otherCategoriesPages: Array<PageInterface> = [
+    { title: '#CheckIn', name: "", logsOut: false, component: HomePage, index: 0, icon:"navigate" },
+    { title: '#GateControl', name: "", logsOut: false, component: HomePage, index: 0, icon:"" },
+    { title: '#ClaimPrize', name: "", logsOut: false, component: HomePage, index: 0, icon:"" },
+    { title: '#CheckTacPoints', name: "", logsOut: false, component: HomePage, index: 0, icon:"Ribbons" },
+    { title: 'Log Out', name: "logout", logsOut: false, component: null, index: 0, icon:"log-out" },
+  ]
   constructor(
+    public simpleAlert: SimpleAlertProvider,
+    public loginCtrl: LoginControlProvider,
     public platform: Platform, 
     public statusBar: StatusBar, 
     public splashScreen: SplashScreen) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
-    this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: '1', component: ListPage },
-      { title: '2', component: ListPage },
-      { title: '3', component: ListPage },
-      { title: '4', component: ListPage },
-      { title: '5', component: ListPage },
-      { title: '6', component: ListPage },
-      { title: '7', component: ListPage },
-      { title: '8', component: ListPage },
-      { title: '9', component: ListPage },
-      { title: '10', component: ListPage },
 
-    ];
-
+    this.loginSetup();
   }
 
   initializeApp() {
@@ -50,9 +63,36 @@ export class MyApp {
     });
   }
 
-  openPage(page) {
+  openPage(page: PageInterface) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
+
+    if(page.name === 'logout'){
+      this.logOut();
+    }else {
+      this.nav.setRoot(page.component);
+    }
   }
+
+  // ############################################
+  // ############# Login Control ################
+  // ############################################
+
+  loginSetup(){
+    this.loginCtrl.loginControl().then( res => {
+      // set rootpage after successfull login
+      this.rootPage = DashboardPage;
+    });
+  }
+
+  logOut(){
+    this.simpleAlert.showLoadingWithMessage("Logging out...");
+    this.loginCtrl.logout().then(() => {
+      this.simpleAlert.dismissLoading();
+      this.loginSetup();
+    }, err => {
+      console.log(err.description);
+    });
+  }
+
 }

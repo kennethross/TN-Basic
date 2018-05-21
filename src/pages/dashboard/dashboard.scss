@@ -1,0 +1,38 @@
+page-dashboard {
+
+    .toolbar-background {
+        background-color: color($colors, primary);
+    }
+
+    ion-content {
+
+        ion-grid {
+            height: 100%;
+        }
+        ion-row {
+            height: 25%;
+            margin-bottom: 10px solid white;
+        }
+
+        .first-col {
+            background-color: color($colors, primary);
+            div {
+                img {
+                    padding-top: 25px;
+                    padding-left: 10px;
+                    width: 90%;
+                }
+            }
+        }
+
+        .second-col {
+            background-color: white;
+        }
+
+        .border-seperator {
+            border-bottom: 10px solid white;
+            margin-left: 25px;
+            margin-right: 25px;
+        }
+    }
+}

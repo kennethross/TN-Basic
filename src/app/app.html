@@ -1,5 +1,5 @@
 <ion-menu [content]="content">
-  <ion-header>
+  <ion-header no-border>
     <!-- <ion-grid> -->
       <ion-row class="row-top-header">
        
@@ -33,20 +33,41 @@
         </ion-col>
 
       </ion-row>
-
-    <!-- </ion-grid> -->
+    <div class="border-seperator"></div>
   </ion-header>
 
   <ion-content>
     <ion-list>
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+      <div text-left menuClose ion-item *ngFor="let p of mainPages" (click)="openPage(p)">
+        <ion-icon item-start [name]="p.icon"></ion-icon>
         {{p.title}}
-      </button>
+      </div>
+      <!-- <ion-item *ngFor="let p of pages" (click)="openPage(p)">
+        {{p.title}}
+      </ion-item> -->
     </ion-list>
+    <div class="border-seperator"></div>
+    <ion-list>
+      <div text-left menuClose ion-item *ngFor="let p of otherCategoriesPages" (click)="openPage(p)">
+          <ion-icon item-start [name]="p.icon"></ion-icon>
+        {{p.title}}
+      </div>
+    </ion-list>
+
   </ion-content>
 
-  <ion-footer>
-    Footer
+  <ion-footer class="footer-trademark" no-border>
+    <div align-self-item class="border-seperator"></div>
+    <div class="background-div">
+      <ion-row justify-content-center>
+        <ion-col align-self-center col-3>
+          <img src="./assets/icon/tacnotev2_logo_blue.png" style="height:40px; width:40px;">
+        </ion-col>
+        <ion-col align-self-center text-left>
+          <span style="font-family: 'HelveticaNeue-light'; font-size:18px; color: gray;">Smartified by </span><span style="font-family: 'HelveticaNeue-CondensedBold'; font-size:18px; color: gray;">TacNote &#174;</span>
+        </ion-col>
+      </ion-row>
+    </div>
   </ion-footer>
 </ion-menu>
 

@@ -17,8 +17,24 @@
 
 ion-menu {
 
+    font-family: 'HelveticaNeue-CondensedBold';
+    color: color($colors, primary-fontcolor);
+
+    .border-seperator {
+        border-bottom: 1px solid lightslategray;
+        margin-left: 25px;
+        margin-right: 25px;
+    }
+
+    div {
+        color: color($colors, primary-fontcolor);
+    }
+
+    ion-icon{
+        color: color($colors, primary-fontcolor);
+    }
+
     ion-header {
-        background-color: white;
         height: 35%;
 
         .row-top-header {
@@ -35,6 +51,10 @@ ion-menu {
 
             .col-right {
                 // background-color: transparent;
+            }
+
+            img {
+                width: 80%;
             }
         }
 
@@ -59,7 +79,7 @@ ion-menu {
 
         .row-bottom-header {
             height: 20%;
-            // background-color: beige;
+            border-bottom: 0.2px gray;
 
             .col-left{
                 // background-color: transparent;
@@ -92,9 +112,37 @@ ion-menu {
         }
     }
 
-    ion-footer {
-        background-color: green;
-        height: 8%;
+    ion-content {
+
+        .item-md {
+            padding-left: 0px;
+        }
+
+        .list-md .item-block {
+            border-bottom: 0px;
+            padding-left: 20px;
+            // border-left: 2px solid blue;
+
+            .item-inner {
+                border-bottom: 0px;
+            }
+        }
     }
-    
+
+    ion-footer {
+        height: 8%;
+        background-color: white;
+        
+
+        .background-div {
+            ion-col{
+                text-align: right;
+            }
+            // align-items: center;
+            // margin-left: auto;
+            // margin-right: auto;
+            // position: relative;
+
+        }
+    }
 }
