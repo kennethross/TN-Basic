@@ -1,9 +1,29 @@
 page-login {
 
+    .background{
+        background: url('../assets/imgs/tacnoteLogin.png') no-repeat;
+        background-size: cover;
+        background-position: center; 
+        margin: auto; 
+        z-index: 2; 
+    }
+
+    .div-login-logo {
+
+        padding-top: 60px;
+        padding-left: 20px;
+        padding-right: 20px;
+        .div-hashtags {
+            padding-top: 20px;
+            color: white; 
+            font-size: 18px;
+        }
+    }
+
     .div-login {
         
         position: relative;
-        bottom: -350px;
+        bottom: -100px;
 
         .item {
             padding: 0 0 0 0;
@@ -11,8 +31,19 @@ page-login {
             background-color: rgba(0, 0, 0, 0);
             color: black; 
     
-            label {
-                font-size: 15pt;
+            ion-label {
+                font-size: 12pt;
+                color: white;
+            }
+
+            ion-input {
+                color: white;
+                font-family: 'HelveticaNeue-CondensedBold'; 
+            }
+
+            button {
+                font-size: 30px;
+                font-family: 'HelveticaNeue-CondensedBold'; 
             }
         }
     }

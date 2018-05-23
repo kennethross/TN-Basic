@@ -5,6 +5,12 @@
 // roboto, and noto sans fonts
 $font-path: "../assets/fonts";
 
+// $fonts: (
+//   normalFont: "HelveticaNeue",
+//   lightFont: "HelveticaNeue-light",
+//   boldFont: "HelveticaNeue-CondensedBold",
+// );
+
 
 // The app direction is used to include
 // rtl styles in your app. For more info, please see:
@@ -46,9 +52,9 @@ $colors: (
   light: #f4f4f4,
 );
 
-$toolbar-md-title-text-color: map-get($colors, white);
-$toolbar-ios-title-text-color: map-get($colors, white);
-$toolbar-wp-title-text-color: map-get($colors, white);
+$toolbar-md-title-text-color: map-get($colors, light);
+$toolbar-ios-title-text-color: map-get($colors, light);
+$toolbar-wp-title-text-color: map-get($colors, light);
 
 // App iOS Variables
 // --------------------------------------------------

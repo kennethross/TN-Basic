@@ -4,7 +4,9 @@ import {
   NavParams,
   ViewController } from 'ionic-angular';
 
-import { NgForm } from '@angular/forms/src/directives/ng_form';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { regexValidators } from '../validators/validator';
+// import { NgForm } from '@angular/forms/src/directives/ng_form';
 
 import { SimpleAlertProvider } from '../../providers/simple-alert/simple-alert';
 import { LoginControlProvider } from '../../providers/login-control/login-control';
@@ -25,33 +27,47 @@ import { UserDataProvider } from '../../providers/user-data/user-data';
 })
 export class LoginPage {
 
-  userLogin = { username: 'chokkuan@gmail.com', password: '123456' };
+  userLogin = { username: 'chokkuan99@gmail.com', password: '123456' };
+  credentialsForm: FormGroup;
+  // userLogin = { username: '', password: '' };
 
   constructor(
-
+    private formBuilder: FormBuilder,
     public simpleAlert: SimpleAlertProvider,
     public viewCtrl: ViewController,
     public navParams: NavParams,
     public userData: UserDataProvider) {
+
+      this.credentialsForm = this.formBuilder.group({
+        username:[this.userLogin.username, Validators.compose([
+                   Validators.pattern(regexValidators.email),
+                   Validators.required])],
+        password:[this.userLogin.password, Validators.required],
+      })
+
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }
 
-  loginTapped(logForm: NgForm){
+  loginTapped(logForm: FormGroup){
+    // this.submitted = true;
     console.log(logForm);
-    if(logForm.valid){
-      this.login();
-    }
+    this.login();
   }
 
   login(){
     this.simpleAlert.showLoadingWithMessage("");
 
-    this.userData.userLogIn(this.userLogin).then( res => {
-      this.simpleAlert.showSuccessWithMessage("Successfully");
+    let userLoginCreds = {
+      username: this.credentialsForm.value.username,
+      password: this.credentialsForm.value.password
+    }
+
+    this.userData.userLogIn(userLoginCreds).then( res => {
       this.dismiss();
+      this.simpleAlert.showSuccessWithMessage("Successfully");
     }, err => {
       console.log(err);
       this.simpleAlert.showTitleWithMessage("Error : " + err.code, err.description );

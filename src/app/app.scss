@@ -15,6 +15,10 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
+ion-header ion-icon.back-button-icon.icon {
+    color: map-get($colors, light);
+  }
+
 ion-menu {
 
     font-family: 'HelveticaNeue-CondensedBold';

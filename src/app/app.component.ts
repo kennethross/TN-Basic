@@ -81,18 +81,24 @@ export class MyApp {
   loginSetup(){
     this.loginCtrl.loginControl().then( res => {
       // set rootpage after successfull login
-      this.rootPage = DashboardPage;
+      console.log("Setting the root page");
+      this.settingTheRootInTheMainMenu();
     });
   }
 
   logOut(){
     this.simpleAlert.showLoadingWithMessage("Logging out...");
     this.loginCtrl.logout().then(() => {
+      // this.settingTheRootInTheMainMenu();
       this.simpleAlert.dismissLoading();
       this.loginSetup();
     }, err => {
       console.log(err.description);
     });
+  }
+
+  settingTheRootInTheMainMenu(){
+    this.nav.setRoot(DashboardPage);
   }
 
 }

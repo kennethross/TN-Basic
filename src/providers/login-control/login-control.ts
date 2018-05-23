@@ -40,7 +40,7 @@ export class LoginControlProvider {
   showLogin(){
     return new Promise<any>(resolve => {
       let loginModal = this.modalCtrl.create(LoginPage);
-      loginModal.dismiss(() => {
+      loginModal.onDidDismiss(() => {
         resolve("Return from Login");
       });
       loginModal.present();

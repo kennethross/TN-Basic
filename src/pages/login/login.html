@@ -13,18 +13,61 @@
 </ion-header> -->
 
 
-<ion-content padding>
+<ion-content padding class="background" scroll="false">
+
+  <div class="div-login-logo">
+    <img src="./assets/imgs/tacnotev2_wordmark_white.png">
+    
+    <div class="div-hashtags" text-center>
+      #MakeEventSmarter
+    </div>
+  </div>
 
   <div class="div-login">
-    <form #loginForm="ngForm" novalidate>
+
+    <form [formGroup]="credentialsForm">
+
+      <ion-item>
+        <ion-label class="usernameField" stacked color="">Username</ion-label>
+        <ion-input [formControl]="credentialsForm.controls['username']" type="email" spellcheck="false" autocapitalize="off"></ion-input>
+      </ion-item>
+      <p ion-text [hidden]="credentialsForm.controls.username.untouched || credentialsForm.controls.username.valid" color="danger" padding-left>
+        Username is required
+      </p>
+
+      <ion-item>
+        <ion-label class="PasswordField" stacked color="white">Password</ion-label>
+        <ion-input [formControl]="credentialsForm.controls['password']" type="password" spellcheck="false" autocapitalize="off" required>
+        </ion-input>
+      </ion-item>
+      <p ion-text [hidden]="credentialsForm.controls.password.untouched || credentialsForm.controls.password.valid" color="danger" padding-left>
+        Invalid Passowrd
+      </p>
+
+      <div class="div-button-login">
+        <!-- <button 
+          ion-button class="login-button" 
+          [disabled]="!credentialsForm.valid"
+          (click)="loginTapped(credentialsForm)" 
+          type="submit" full strong>LOGIN
+        </button> -->
+        <button 
+          ion-button class="login-button" 
+          (click)="loginTapped(credentialsForm)" 
+          type="submit" full strong>LOGIN
+        </button>
+      </div>
+
+    </form>
+    <!-- <form #loginForm="ngForm" novalidate>
       
       <ion-item>
         <ion-label class="usernameField" stacked color="">Username</ion-label>
         <ion-input [(ngModel)]="userLogin.username" name="username" type="text" #username="ngModel" spellcheck="false" autocapitalize="" required></ion-input>
       </ion-item>
       <p ion-text [hidden]="username.valid || submitted == false" color="danger" padding-left>
-          Member ID is required
-        </p>
+        Member ID is required
+      </p>
     
       <ion-item>
         <ion-label class="PasswordField" stacked color="white">Password</ion-label>
@@ -37,10 +80,10 @@
       </p>
 
       <div class="div-button-login">
-        <button ion-button class="login-button" (click)="loginTapped(loginForm)" type="submit" full>Login</button>
+        <button ion-button class="login-button" (click)="loginTapped(loginForm)" type="submit" full strong>LOGIN</button>
       </div>
 
-    </form>
+    </form> -->
   </div>
 
 <!-- <button ion-button (click)="loginTapped()">Login</button> -->
