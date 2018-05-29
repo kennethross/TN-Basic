@@ -1,0 +1,125 @@
+page-visitor-detail {
+
+    .div-avatar, .div-details {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .div-avatar {
+        // background: green;
+        height: 40%;
+        border-bottom: 1px solid gray;
+        color: color($colors, primary-fontcolor);
+
+        .div-img {
+            padding-top: 12%;
+            img {
+                border-radius: 50%;
+                width: 20%;
+            }
+        }
+
+        .div-name {
+            padding-top: 6%;
+            font-family: 'HelveticaNeue-CondensedBold';
+            font-size: 20px;
+        }
+
+        .div-job-title {
+            font-family: 'HelveticaNeue-light';
+            font-size: 16px;
+        }
+
+        .div-title-company {
+            padding-top: 5%;
+            font-family: 'HelveticaNeue-light';
+            font-size: 16px;
+        }
+    }
+
+    .div-details {
+        // background: pink;
+        height: 50%;
+        font-size: 14px;
+        color: color($colors, primary-fontcolor);
+
+        .label-detail {
+            font-family: 'HelveticaNeue-light';
+        }
+
+        .info-detail {
+            font-family: 'HelveticaNeue-condensedBold';
+        }
+
+        .div-detail-email {
+            padding-top: 28px;
+        }
+
+        .div-detail-phone, .div-detail-facebook, .div-detail-location, .div-detail-checked {
+            padding-top: 15px;
+        }
+
+        .div-detail-checked {
+            ion-col {
+                padding: 0 0 0 0;
+            }
+
+            .check-in-date {
+                font-family: 'HelveticaNeue-condensedBold';
+                color: color($colors, primary);
+            }
+
+            .check-out-date {
+                font-family: 'HelveticaNeue-condensedBold';
+                color: red;
+            }
+        }
+
+    }
+
+    .div-button {
+        // background: brown;
+        // height: 10%;
+        position: absolute; 
+        bottom: 0px; 
+        width: 100%; 
+
+
+        ion-col {
+            padding: 0 0 0 0;
+
+
+            .button-check-in {
+                background: color($colors, primary);
+                color: white;
+                border-right: 1px solid white;
+            }
+
+            .button-check-out {
+                background: white;
+                color:color($colors, primary);
+                border-top: 1px solid color($colors, primary);
+                border-bottom: 1px solid color($colors, primary);
+                border-left: 1px solid color($colors, primary);
+                border-right: 1px solid color($colors, primary);
+            }
+
+            .button-print-label {
+                background: color($colors, primary);
+                color: white;
+                border-left: 1px solid white;
+            }
+            // .button-cancel {
+            //     font-family: 'HelveticaNeue-CondensedBold';
+            //     background-color: white;
+            //     color: color($colors, tangerin);
+            // }
+
+            // .button-confirm {
+            //     font-family: 'HelveticaNeue-CondensedBold';
+            //     background-color: color($colors, tangerin);
+            // }
+        }
+    }
+
+}

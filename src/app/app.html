@@ -1,6 +1,7 @@
 <ion-menu [content]="content">
   <ion-header no-border>
     <!-- <ion-grid> -->
+      <div style="height: 20px;"></div>
       <ion-row class="row-top-header">
        
         <ion-col col-2 class="col-left">
@@ -38,20 +39,20 @@
 
   <ion-content>
     <ion-list>
-      <div text-left menuClose ion-item *ngFor="let p of mainPages" (click)="openPage(p)">
+      <ion-item text-left menuClose no-lines *ngFor="let p of mainPages" (click)="openPage(p)">
         <ion-icon item-start [name]="p.icon"></ion-icon>
         {{p.title}}
-      </div>
+      </ion-item>
       <!-- <ion-item *ngFor="let p of pages" (click)="openPage(p)">
         {{p.title}}
       </ion-item> -->
     </ion-list>
     <div class="border-seperator"></div>
     <ion-list>
-      <div text-left menuClose ion-item *ngFor="let p of otherCategoriesPages" (click)="openPage(p)">
+      <ion-item text-left menuClose no-lines *ngFor="let p of otherCategoriesPages" (click)="openPage(p)">
           <ion-icon item-start [name]="p.icon"></ion-icon>
         {{p.title}}
-      </div>
+      </ion-item>
     </ion-list>
 
   </ion-content>
@@ -59,8 +60,8 @@
   <ion-footer class="footer-trademark" no-border>
     <div align-self-item class="border-seperator"></div>
     <div class="background-div">
-      <ion-row justify-content-center>
-        <ion-col align-self-center col-3>
+      <ion-row>
+        <ion-col text-left col-2>
           <img src="./assets/icon/tacnotev2_logo_blue.png" style="height:40px; width:40px;">
         </ion-col>
         <ion-col align-self-center text-left>

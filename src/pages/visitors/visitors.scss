@@ -1,0 +1,115 @@
+page-visitors {
+
+    ion-item-divider {
+        height: 20px;
+        background-color: gray;
+    }
+
+    .item-contact {
+
+        border-bottom: 0.1rem solid darkgrey;
+
+        .col-avatar {
+            // background: pink;
+            img {
+                border-radius: 50%;
+                width: 70%;
+                padding-top: 5px;
+                padding-bottom: 5px;
+            }
+        }
+
+        .col-personal-details {
+            // background: green;
+            padding: 0 0 0 0;
+
+            .row-visitor-name {
+                height: 40%;
+                // background: violet;
+                color: color($colors, titleHeader);
+                font-family: 'HelveticaNeue-CondensedBold';
+                font-size: 17px;
+                align-items: center;
+            }
+
+            .row-job-title {
+                height: 20%;
+                // background: goldenrod;
+                color: color($colors, titleHeader);
+                font-family: 'HelveticaNeue-light';
+                font-size: 12px;
+                align-items: flex-start;
+            }
+
+            .row-check-access {
+                height: 20%;
+                // background: orange;
+                align-items: flex-start;
+
+                .check-in-span, .check-out-span {
+                    font-size: 9px;
+                }
+    
+                .check-in-span {
+                    color: color($colors, primary);
+                }
+    
+                .check-out-span {
+                    color: red;
+                }
+            }
+        }
+
+        .col-print-badge {
+            background: color($colors, primary);
+
+            button {
+                height: 100%;
+                width: 100%;
+                background: transparent;
+                padding: 0 0 0 0;
+            }
+
+            .row-img {
+
+                height: 70%;
+                align-items: center;
+
+                img {
+                    height: 70%;
+                    width: 70%;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+            }
+
+            .row-text {
+                // align-items: center;
+                text-align: center;
+                color: white;
+                font-size: 11px;
+            }
+        }
+    }
+
+    ion-footer {
+
+        background: color($colors, primary);
+        color: white;
+        font-family: 'HelveticaNeue-CondensedBold';
+        font-size: 17px;
+        height:40px;
+
+        img {
+            padding-top: 1px;
+            width: 10%;
+        }
+
+        ion-row {
+            padding-top: 5px;
+        }
+        ion-col {
+
+        }
+    }
+}

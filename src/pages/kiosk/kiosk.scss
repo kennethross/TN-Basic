@@ -1,0 +1,64 @@
+page-kiosk {
+
+    ion-card {
+        background: color($colors, primary);
+    }
+    .main-content {
+        background-color: color($colors, primary);
+
+        .div-header {
+            color: white;
+            padding-top: 30px;
+
+            .div-event-name {
+                font-family: 'Avenir next Condensed';
+                font-size: 30px;
+            }
+
+            .div-event-date {
+                font-family: 'Avenir next';
+                font-size: 18px;
+            }
+        }
+
+        .div-buttons {
+
+            button {
+                background: color($colors, primary);
+            }
+
+            button.activated {
+                background:transparent;
+            }
+
+            margin: auto;
+            width: 55%;
+            // padding: 10px;
+            position: absolute;
+            top: 18%;
+            right: 23%;
+
+            .div-walk-in, .div-check-in, .div-qr-check-in  {
+                height: 30%;
+                padding-top: 10px;
+                img {
+                    width: 90%;
+                }
+            }
+
+            .div-check-in {
+                position: relative;
+                overflow: hidden;
+            }
+        }
+
+
+        .div-footer {
+            padding-top: 21px;
+            padding-bottom: 5px;
+            font-family: 'Avenir next';
+            color: white;
+            font-size: 10px;
+        }
+    }
+}

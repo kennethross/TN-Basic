@@ -19,13 +19,17 @@ ion-header ion-icon.back-button-icon.icon {
     color: map-get($colors, light);
   }
 
+  .toolbar-background {
+    background-color: color($colors, primary);
+}
+
 ion-menu {
 
     font-family: 'HelveticaNeue-CondensedBold';
     color: color($colors, primary-fontcolor);
 
     .border-seperator {
-        border-bottom: 1px solid lightslategray;
+        border-bottom: 0.55px solid lightslategray;
         margin-left: 25px;
         margin-right: 25px;
     }
@@ -118,18 +122,12 @@ ion-menu {
 
     ion-content {
 
-        .item-md {
-            padding-left: 0px;
-        }
+        margin-top:20px;
 
-        .list-md .item-block {
-            border-bottom: 0px;
-            padding-left: 20px;
-            // border-left: 2px solid blue;
+        ion-list {
+            // border-style: none;
+            margin-bottom: 0px;
 
-            .item-inner {
-                border-bottom: 0px;
-            }
         }
     }
 
@@ -141,6 +139,9 @@ ion-menu {
         .background-div {
             ion-col{
                 text-align: right;
+            }
+            img {
+                // padding-right:10px;
             }
             // align-items: center;
             // margin-left: auto;

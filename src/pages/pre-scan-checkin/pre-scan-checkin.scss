@@ -1,0 +1,59 @@
+page-pre-scan-checkin {
+
+    .main-content {
+        background: color($colors, primary);
+
+        .div-page-header {
+
+            .button-navback {
+                padding-top: 10px;
+                background: transparent;
+            }
+
+            color: white;
+            font-size: 24px;
+            font-family: 'HelveticaNeue-light';
+        }
+
+        .div-main {
+
+            position: relative;
+            top: 18%;
+            
+            .div-title-header {
+                color: white;
+                font-family: 'HelveticaNeue-CondensedBold';
+                font-size: 28px;
+                padding-bottom: 15px;
+            }
+
+            .div-image {
+
+                width: 60%;
+                border-top: 7px solid skyblue;
+                border-bottom: 7px solid skyblue;
+                border-left: 7px solid skyblue;
+                border-right: 7px solid skyblue;
+
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .div-footer {
+                padding-top: 15px;
+                color: white;
+                font-family: 'HelveticaNeue-light';
+                font-size: 18px;
+            }
+
+        }
+        
+            .button-navnext {
+            padding-top: 40px;
+            background: transparent;
+            img {
+                width: 40%;
+            }
+        }
+    }
+}

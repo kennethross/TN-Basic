@@ -1,0 +1,103 @@
+<!--
+  Generated template for the VisitorsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon color="light" name="menu"></ion-icon>
+      </button>
+    <ion-title>VISITORS</ion-title>
+
+  </ion-navbar>
+
+  <ion-toolbar class="" >
+    <div class="search-div">
+      <!-- <ion-input></ion-input> -->
+      <ion-searchbar #q
+        [(ngModel)]="queryText"
+        [showCancelButton]="shouldShowCancel"
+        (ionInput)="searchVisitors()" 
+        placeholder="Search Name"
+        [debounce]="500">
+        
+      </ion-searchbar>
+    </div>
+  </ion-toolbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-list>
+    <ion-item-group *ngFor="let group of groupedContacts">
+
+      <ion-item-divider color="light">
+        <ion-label>
+        {{group.letter}}
+        </ion-label>
+      </ion-item-divider>
+
+      <div class="item-contact" (click)="openVisitorDetail(contact)" *ngFor="let contact of group.contacts">
+        
+        <ion-row class="row-main">
+          <ion-col class="col-avatar" col-3 text-center>
+            <img class="img-avatar" src="./assets/imgs/avatar.png" alt="Avatar">
+          </ion-col>
+          <ion-col class="col-personal-details">
+            <ion-row class="row-visitor-name">
+              {{contact}}
+            </ion-row> 
+            <ion-row class="row-job-title">
+              General Admission
+            </ion-row>
+            <ion-row class="row-check-access">
+              <span class="check-in-span">I: 2018 0600, 10:43PM </span>
+              &nbsp;
+              <span class="check-out-span">O: 2018 0600, 10:43PM</span>
+            </ion-row>
+          </ion-col>
+          <ion-col class="col-print-badge" col-2>
+            <button (click)="openPrintBadge(contact);$event.stopPropagation();">
+              <ion-row class="row-img">
+                <img class="img-badge" src="./assets/icon/printBadge.png">
+              </ion-row>
+              <ion-row   align-items-center class="row-text">
+                <ion-col>
+                  Badge
+                </ion-col>
+              </ion-row>
+            </button>
+
+          </ion-col>
+        </ion-row>
+      </div>
+  
+    </ion-item-group>
+  </ion-list>
+</ion-content>
+
+
+<ion-footer>
+  <!-- <ion-toolbar> -->
+    <ion-row align-items-center>
+      <ion-col text-center col-5>
+        <img src="./assets/imgs/dashboard/visitors.png"> &nbsp;
+          <!-- <ion-icon item-start name="people"></ion-icon> -->
+        1211/1518
+      </ion-col>
+      <ion-col  text-left>
+        G 1000
+      </ion-col>
+      <ion-col text-left>
+        V 200
+      </ion-col>
+      <ion-col text-left>
+        VV 11
+      </ion-col>
+    </ion-row>
+  <!-- </ion-toolbar> -->
+</ion-footer>

@@ -1,0 +1,68 @@
+page-phone-checkin {
+    .main-content {
+        background: color($colors, primary);
+    }
+
+    .div-page-header {
+        padding-top: 5px;
+        button {
+            background: transparent;
+            width: 50%;
+        }
+    }
+
+    .input-phone {
+        padding-left: 15px;
+        padding-right: 15px;
+
+        .phoneField {
+            color: white;
+        }
+
+        ion-input {
+            font-family: 'HelveticaNeue-condensedBold';
+        }
+    }
+
+    .div-change-to-email {
+        padding-top: 20px;
+        color: white;
+        text-decoration: underline;
+
+    }
+
+    .div-number {
+    
+        padding-top: 30px;
+
+        .button-stretch {
+            color: white;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            font-size: 23px;
+            border-top: 1px solid white; 
+            border-left: 1px solid white; 
+            border-right: 1px solid white; 
+            border-bottom: 1px solid white;
+            // text-align: center;
+            text-align: center;
+            margin: auto;
+            background-color: transparent;
+        }
+    
+        .col-20{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .col-offset-15 {
+            margin-left: 0%;
+        }
+    
+        .button-forgot-pincode {
+            color: color($colors, tangerin);
+        }
+    }
+}

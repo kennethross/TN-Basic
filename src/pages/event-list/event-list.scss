@@ -1,0 +1,40 @@
+page-event-list {
+
+    ion-header {
+        img {
+            padding:2px 2px 2px 2px;
+            width: 80%;
+        }
+
+        font-family: 'HelveticaNeue-CondensedBold';
+        font-size: 18px;
+        color: gray;
+    }
+
+    ion-content {
+
+        ion-list {
+            border-style: none;
+        }
+        ion-item {
+            border-style: none;
+            // margin-right: 10px;
+
+            .div-event-title {
+                font-family: 'HelveticaNeue-CondensedBold';
+                color: color($colors, titleHeader);
+                padding-bottom: 10px;
+            }
+
+            .div-event-date {
+                font-family: 'HelveticaNeue-light';
+                color: gray;
+                font-size: 12px;
+            }
+        }
+
+        .border-seperator {
+            border-bottom: 1px solid gray;
+        }
+    }
+}

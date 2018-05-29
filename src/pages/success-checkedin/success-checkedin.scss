@@ -1,0 +1,47 @@
+page-success-checkedin {
+
+    .main-content {
+        background: color($colors, primary);
+        color:white;
+        .div-main {
+
+            position: relative;
+            top: 20%;
+
+            .div-header-label {
+                font-size: 30px;
+                font-family: 'HelveticaNeue-condensedBold';
+            }
+
+            .div-avatar {
+                img {
+                    border-radius: 50%;
+                    width: 50%;
+                    border-top: 7px solid skyblue;
+                    border-left: 7px solid skyblue;
+                    border-right: 7px solid skyblue;
+                    border-bottom: 7px solid skyblue;
+                }
+            }
+
+            .div-name-label {
+                padding-top: 20px;
+                font-family: 'HelveticaNeue-condensedBold';
+                font-size: 26px;
+            }
+
+            .div-jobtitle-label {
+                font-family: 'HelveticaNeue-light';
+                font-size: 20px;
+            }
+        }
+
+        button {
+            width: 30%;
+            background: transparent;
+            position: absolute;
+            bottom: 10px;
+            left: 35%;
+        }
+    }
+}

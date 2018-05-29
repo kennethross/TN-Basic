@@ -56,6 +56,18 @@ $toolbar-md-title-text-color: map-get($colors, light);
 $toolbar-ios-title-text-color: map-get($colors, light);
 $toolbar-wp-title-text-color: map-get($colors, light);
 
+$font-family-md-base: "HelveticaNeue";
+$font-family-ios-base: "HelveticaNeue";
+$font-family-wp-base: "HelveticaNeue";
+
+// $searchbar-ios-background-color :white;
+$searchbar-ios-input-search-icon-color: black;
+$searchbar-ios-toolbar-input-background: white;
+$searchbar-ios-input-placeholder-color: black;
+
+// $font-family-ios-base: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", 
+//   Helvetica, Arial, "Lucida Grande", sans-serif, ;
+
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here

@@ -1,0 +1,41 @@
+page-registration-form {
+
+    // ion-header {
+    //     button {
+    //         background: transparent;
+    //         color: white;
+    //         font-size: 22px;
+    //         font-family: 'HelveticaNeue-light';
+    //     }
+
+    //     ion-icon {
+    //         font-size: 30px;
+    //         font-weight: bold;
+    //     }
+    // }
+
+    .main-content {
+
+        .div-page-header {
+            padding-top: 5px;
+            button {
+                background: transparent;
+                width: 50%;
+            }
+        }
+
+        background-color: color($colors, primary);
+
+        ion-item {
+            background-color: transparent;
+            color: white;
+            padding-right: 15px;
+
+            ion-label {
+                font-family: 'HelveticaNeue-CondensedBold';
+            }
+        }
+    }
+
+    
+}

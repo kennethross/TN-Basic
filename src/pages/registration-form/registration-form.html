@@ -1,0 +1,77 @@
+<!--
+  Generated template for the RegistrationFormPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<!-- <ion-header>
+
+  <ion-navbar hideBackButton="true">
+    <ion-buttons start>
+      <button (click)="backTapped()">
+        <ion-icon ios="ios-arrow-dropleft" md="md-arrow-dropleft"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons end>
+      <button (click)="nextTapped()" [disabled]="!credentialsForm.valid">
+        <ion-icon ios="ios-arrow-dropright" md="md-arrow-dropright"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title></ion-title>
+  </ion-navbar>
+
+</ion-header> -->
+
+
+<ion-content class="main-content">
+
+    <div class="div-page-header">
+      <ion-row>
+        <ion-col text-left align-self-center>
+        <button (click)="backTapped()">
+            <img src="./assets/imgs/kiosk/navback.png">
+        </button>
+        </ion-col>
+        <ion-col text-right align-self-center>
+        <button (click)="nextTapped()" [disabled]="!credentialsForm.valid">
+            <img src="./assets/imgs/kiosk/navnext.png">
+        </button>
+        </ion-col>
+      </ion-row>
+    </div>
+
+  <form [formGroup]="credentialsForm">
+    <ion-item>
+      <ion-label class="firstNameField" stacked color="white"> First Name 
+        <span [hidden]="credentialsForm.controls.firstName.valid"  style="color: red;">*</span> 
+      </ion-label>
+      <ion-input class="name-field" [formControl]="credentialsForm.controls['firstName']" type="text" spellcheck="false" autocapitalize="off" required>
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="lastNameField" stacked color="white">Last Name 
+        <span [hidden]="credentialsForm.controls.lastName.valid"  style="color: red;">*</span>
+      </ion-label>
+      <ion-input class="name-field" [formControl]="credentialsForm.controls['lastName']" type="text" spellcheck="false" autocapitalize="off">
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="emailField" stacked color="white">Email 
+        <span [hidden]="credentialsForm.controls.email.valid"  style="color: red;">*</span>
+      </ion-label>
+      <ion-input [formControl]="credentialsForm.controls['email']" spellcheck="false" type="email" autocapitalize="off">
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="phoneField" stacked color="white">Phone Number 
+        <span [hidden]="credentialsForm.controls.phone.valid"  style="color: red;">*</span>
+      </ion-label>  
+      <!-- <ion-label *ngIf="credentialsForm.controls.phone.valid || submitted == true" class="phoneField" stacked>Phone Number <span style="color: red;">required *</span></ion-label> -->
+      <ion-input type="text" [formControl]="credentialsForm.controls['phone']">
+      </ion-input>
+    </ion-item>
+  </form>
+</ion-content>

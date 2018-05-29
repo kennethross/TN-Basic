@@ -1,0 +1,103 @@
+<!--
+  Generated template for the VisitorDetailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Visitor Detail</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content no-bounce>
+
+  <div class="div-avatar">
+    <div class="div-img" text-center>
+      <img src="./assets/imgs/avatar.png">
+    </div>
+    <div class="div-name" text-center>
+      <span>Kenneth Ross Palermo</span>
+    </div>
+    <div class="div-job-title" text-center>
+      <span>Software Developer</span>
+    </div>
+    <div class="div-title-company" text-center>
+        <span>Aspevo Tech LLC</span>
+    </div>
+  </div>
+
+  <!-- <div style="border-bottom: 1px solid gray; margin-left: 5px; margin-right: 5px;"></div> -->
+
+  <div class="div-details">
+
+    <div class="div-detail-email">
+      <span class="label-detail">Email</span> <br>
+      <span class="info-detail" style="text-decoration: underline;">kennethrosspalermo@gmail.com</span>
+    </div>
+
+    <div class="div-detail-phone">
+      <span class="label-detail">Phone</span> <br>
+      <span class="info-detail" style="text-decoration: underline;">0132477554</span>
+    </div>
+
+    <div class="div-detail-facebook">
+      <span class="label-detail">Facebook</span> <br>
+      <span class="info-detail">face.book.com</span>
+    </div>
+
+    <div class="div-detail-location">
+      <span class="label-detail">Location</span> <br>
+      <span class="info-detail">Kuala Lumpur, Malaysia</span>
+    </div>
+
+    <div class="div-detail-checked">
+      <div class="div-detail-checked-in">
+          <ion-row>
+            <ion-col col-5>
+              <span class="label-detail">
+                Last Checked In
+              </span>
+            </ion-col>
+            <ion-col>
+              <span class="check-in-date">
+                2018-05-01, 08:45AM
+              </span>
+            </ion-col>
+          </ion-row>
+        </div>
+    
+        <div class="div-detail-checked-out">
+          <ion-row>
+            <ion-col col-5>
+              <span class="label-detail">
+                Last Checked Out
+              </span>
+            </ion-col>
+            <ion-col>
+              <span class="check-out-date">
+                2018-05-01, 10:45PM
+              </span>
+            </ion-col>
+          </ion-row>
+        </div>
+    </div>
+
+  </div>
+
+  <div class="div-button">
+    <ion-row>
+      <ion-col>
+          <button [hidden]="!checkIn" class="button-check-in" ion-button  (click)="checkTapped()" type="submit" full>Check In</button>
+          <button [hidden]="checkIn" class="button-check-out" ion-button (click)="checkTapped()" type="submit" full>Check Out</button>
+      </ion-col>
+      <ion-col>
+          <button class="button-print-label" ion-button  color="light" (click)="cancelTapped()" type="submit" full>Print Label</button>
+      </ion-col>
+    </ion-row>
+  </div>
+
+</ion-content>

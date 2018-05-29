@@ -5,8 +5,18 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
 import { DashboardPage } from '../pages/dashboard/dashboard';
+import { VisitorsPage } from '../pages/visitors/visitors';
+import { KioskPage } from '../pages/kiosk/kiosk';
 import { SimpleAlertProvider } from '../providers/simple-alert/simple-alert';
 import { LoginControlProvider } from '../providers/login-control/login-control';
+
+// import { RegistrationFormPage } from '../pages/registration-form/registration-form';
+// import { SuccessCheckedinPage } from '../pages/success-checkedin/success-checkedin';
+// import { EmailCheckinPage } from '../pages/email-checkin/email-checkin';
+// import { PhoneCheckinPage } from '../pages/phone-checkin/phone-checkin';
+// import { CheckinInputFieldPage } from '../pages/checkin-input-field/checkin-input-field';
+// import { PreScanCheckinPage } from '../pages/pre-scan-checkin/pre-scan-checkin';
+// import { EventListPage } from '../pages/event-list/event-list';
 
 export interface PageInterface {
   title: string;
@@ -17,6 +27,7 @@ export interface PageInterface {
   index?: number;
   tabName?: string;
   tabComponent?: any;
+  selected?: boolean;
 }
 
 @Component({
@@ -29,17 +40,17 @@ export class MyApp {
   rootPage: any;
 
   mainPages: Array<PageInterface> = [
-    { title: 'Dashboard', name: "", logsOut: false, component: DashboardPage, index: 0, icon:"wifi" },
-    { title: 'Visitor', name: "", logsOut: false, component: HomePage, index: 0, icon:"people" },
-    { title: 'Kiosk Mode', name: "", logsOut: false, component: HomePage, index: 0, icon:"tablet-portrait" }
+    { title: 'Dashboard', name: "", logsOut: false, component: DashboardPage, index: 0, icon:"wifi", selected: false },
+    { title: 'Visitor', name: "", logsOut: false, component: VisitorsPage, index: 0, icon:"people", selected: false },
+    { title: 'Kiosk Mode', name: "", logsOut: false, component: KioskPage, index: 0, icon:"tablet-portrait", selected: false }
   ];
 
   otherCategoriesPages: Array<PageInterface> = [
-    { title: '#CheckIn', name: "", logsOut: false, component: HomePage, index: 0, icon:"navigate" },
-    { title: '#GateControl', name: "", logsOut: false, component: HomePage, index: 0, icon:"" },
-    { title: '#ClaimPrize', name: "", logsOut: false, component: HomePage, index: 0, icon:"" },
-    { title: '#CheckTacPoints', name: "", logsOut: false, component: HomePage, index: 0, icon:"Ribbons" },
-    { title: 'Log Out', name: "logout", logsOut: false, component: null, index: 0, icon:"log-out" },
+    { title: '#CheckIn', name: "", logsOut: false, component: HomePage, index: 0, icon:"navigate" , selected: false},
+    { title: '#GateControl', name: "", logsOut: false, component: HomePage, index: 0, icon:"", selected: false },
+    { title: '#ClaimPrize', name: "", logsOut: false, component: HomePage, index: 0, icon:"", selected: false },
+    { title: '#CheckTacPoints', name: "", logsOut: false, component: HomePage, index: 0, icon:"Ribbons", selected: false },
+    { title: 'Log Out', name: "logout", logsOut: false, component: null, index: 0, icon:"log-out", selected: false },
   ]
   constructor(
     public simpleAlert: SimpleAlertProvider,
@@ -99,6 +110,7 @@ export class MyApp {
 
   settingTheRootInTheMainMenu(){
     this.nav.setRoot(DashboardPage);
+    // this.nav.setRoot(EventListPage);
   }
 
 }
