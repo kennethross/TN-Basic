@@ -44,15 +44,18 @@ export class EventListPage {
 
   itemSelected(event){
 
-    this.simpleAlert.showLoadingWithMessage("Retrieving Event Info..");
+    // this.simpleAlert.showLoadingWithMessage("Retrieving Event Info..");
 
-    this.getSelectedEventInfo(event).then( () => {
-      this.simpleAlert.dismissLoading();
-      this.dismiss();
-    }, err => {
-      this.simpleAlert.showErrorWithMessage(err.description);
-      this.simpleAlert.dismissLoading();
-    });
+    this.userData.saveSelectedEventInfoLocally(event);
+    this.dismiss();
+
+    // this.getSelectedEventInfo(event).then( () => {
+    //   this.simpleAlert.dismissLoading();
+    //   this.dismiss();
+    // }, err => {
+    //   this.simpleAlert.showErrorWithMessage(err.description);
+    //   this.simpleAlert.dismissLoading();
+    // });
   }
 
   dismiss(){

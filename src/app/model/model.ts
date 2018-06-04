@@ -95,18 +95,42 @@ export class Company {
 }
 
 export class Event {
-  itemID: string;
-  profileUrl: string;
-  title: string;
-  bio:string;
-  isActive: boolean;
-  allowBio: boolean;
-  email: string;
-  website: string;
-  location: string;
-  venue: string;
-  avatarUrl: string;
-  bannerUrl: string;
+    itemID: string;
+    title: string;
+    avatarUrl: string;
+    bannerUrl: string;
+    allowBio: string;
+    bio: string;
+    category: string;
+    city: string;
+    country: string;
+    dateBegin: Date;
+    dateEnd: Date;
+    email: string;
+    enabledRegister: string;
+    endDate: Date;
+    estimateExhibitor: string;
+    estimateVisitor: string;
+    expireDate: Date;
+    facebook: string;
+    hashtag: string;
+    isActive: boolean;
+    location: string;
+    // operator: string;
+    profileUrl: string;
+    // sqFt: string;
+    startDate: Date;
+    state: string;
+    technology: string;
+    // timeBegin:
+    // timeEnd:
+    // timezone:
+    // twitter: string;
+    // type: string;
+    venue: string;
+    venueAddress: string;
+    website: string;
+    zipcode: string;
 
   constructor(values: object = {}){
     // Object.assign(this, values);
@@ -114,12 +138,62 @@ export class Event {
 
   dataObject(data){
     if(data){
-      this.itemID = data.id;
-      this.title = data.title;
-      this.avatarUrl = data.avatar_url;
-      this.bannerUrl = data.banner_url;
+        this.itemID = data.id;
+        this.profileUrl = data.profile_url;
+        this.title = data.title;
+        this.bio = data.bio;
+        this.isActive = data.is_active;
+        this.allowBio = data.allow_bio;
+        this.email = data.email;
+        this.website = data.website;
+        this.location = data.location;
+        this.venue = data.venue;
+        this.venueAddress = data.venue_address;
+        this.state = data.state;
+        this.city = data.city;
+        this.country = data.country;
+        this.zipcode = data.zipcode;
+        this.startDate = data.start_date;
+        this.endDate = data.end_date;
+        this.dateBegin = data.date_begin;
+        this.dateEnd = data.date_end;
+        // this.timeBegin = data.time_begin;
+        // this.timeEnd = data.time_end;
+        // timeZone = data.time_zone;
+        this.estimateExhibitor = data.estimate_exhibitor;
+        this.estimateVisitor = data.estimate_visitor;
+        // sqFt = data.sq_ft;
+        this.hashtag = data.hashtag;
+        this.facebook = data.facebook;
+        // twitter = data.twitter;
+        this.enabledRegister = data.enabled_register;
+        // type = data.type;
+        this.technology = data.technology;
+        this.expireDate = data.expire_date;
+        // operator = data.operator;
+        // category = data.category;
+        // tags = data.tags;
+        // company
+        this.avatarUrl = data.avatar_url;
+        this.bannerUrl = data.banner_url;
     }
   }
+}
+
+export class EventStat {
+    totalTac: string;
+    activeVisitors: string;
+    totalVisitors: string;
+
+    constructor() {
+
+    }
+
+    dataObject(data){
+        this.totalTac = data.total_tac;
+        this.totalVisitors = data.total_visitor;
+        this.activeVisitors = data.active_visitor;
+    }
 }
 
 // export class User {

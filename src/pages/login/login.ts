@@ -27,7 +27,7 @@ import { UserDataProvider } from '../../providers/user-data/user-data';
 })
 export class LoginPage {
 
-  userLogin = { username: 'chokkuan99@gmail.com', password: '123456' };
+  userLogin = { username: 'tacnotecrew@tacnote.com', password: '123456' };
   credentialsForm: FormGroup;
   // userLogin = { username: '', password: '' };
 

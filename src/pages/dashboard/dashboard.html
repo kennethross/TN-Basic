@@ -65,7 +65,8 @@
         </ion-row>
         <ion-row>
           <ion-col class="second-row-col" text-center>
-            <span style="color:rgb(0, 164, 248);">23,091</span>
+            <span *ngIf="!eventStat.totalTac" style="color:rgb(0, 164, 248);">0</span>
+            <span *ngIf="eventStat.totalTac" style="color:rgb(0, 164, 248);">{{eventStat.totalTac}}</span>
           </ion-col>
         </ion-row>
         <ion-row>
@@ -92,7 +93,14 @@
         </ion-row>
         <ion-row>
           <ion-col class="second-row-col" text-center>
-            <span style="color:rgb(0, 164, 248);">1151</span> / 1218
+            
+            <div *ngIf="!eventStat.activeVisitors">
+              <span style="color:rgb(0, 164, 248);">0</span> / 0
+            </div>
+            <div *ngIf="eventStat.activeVisitors">
+              <span style="color:rgb(0, 164, 248);">{{eventStat.activeVisitors}}</span> / {{eventStat.totalVisitors}}
+            </div>
+
           </ion-col>
         </ion-row>
         <ion-row>

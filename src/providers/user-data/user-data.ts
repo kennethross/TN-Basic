@@ -4,7 +4,8 @@ import { Storage } from '@ionic/storage';
 import {
   AuthCredential,
   Event,
-  User} from '../../app/model/model';
+  User,
+  EventStat} from '../../app/model/model';
 import { UserTacServiceProvider } from '../../providers/user-tac-service/user-tac-service';
 
 const STORAGE_AUTHENTICATION_CREDS = "authenticationCredentials";
@@ -12,6 +13,7 @@ const STORAGE_USER_CREDS = "userCredentials";
 const STORAGE_USER_INFO = "userInfo";
 const STORAGE_EVENT_LIST = "eventList";
 const STORAGE_EVENT_INFO = "eventInfo";
+const STORAGE_EVENT_STAT = "eventStat";
 
 /*
   Generated class for the UserDataProvider provider.
@@ -194,13 +196,20 @@ export class UserDataProvider {
       this.getAuthCredsLocally().then( val => {
         let auth: AuthCredential = val;
 
-        this.userTacService.doGetAttendedEvent(auth).subscribe( res => {
-
+        this.userTacService.doGetOrganiseEventList(auth).subscribe( res => {
           let data = res.data;
 
-          console.log(data);
-          this.saveEventListLocally(data);
-          resolve(data);
+          var eventList: Event[] = [];
+
+          for( var i = 0; i < data.length; i++){
+            var temp: Event = new Event();
+            temp.dataObject(data[i]);
+            eventList.push(temp);
+          }
+
+          console.log(eventList);
+          this.saveEventListLocally(eventList);
+          resolve(eventList);
         }, err => {
           reject(err);
         });
@@ -224,7 +233,7 @@ export class UserDataProvider {
         this.userTacService.doGetEventSelectedInfo(eventID, auth).subscribe( res => {
           let event: Event = new Event();
           event.dataObject(res);
-          this.saveEventInfoLocally(event);
+          this.saveSelectedEventInfoLocally(event);
           resolve(event);
         }, err => {
           reject(err);
@@ -233,11 +242,35 @@ export class UserDataProvider {
     });
   }
 
-  saveEventInfoLocally(data){
+  saveSelectedEventInfoLocally(data){
     this.storage.set(STORAGE_EVENT_INFO, data);
   }
 
   getEventInfoLocally(): Promise<Event> {
     return this.storage.get(STORAGE_EVENT_INFO);
+  }
+
+  getEventStatsInfo(eventID){
+    return new Promise<any>((resolve, reject) => {
+      this.getAuthCredsLocally().then( val => {
+        let auth: AuthCredential = val;
+
+        this.userTacService.doGetEventStats(eventID, auth).subscribe( res => {
+          let eventStat: EventStat = new EventStat();
+          eventStat.dataObject(res);
+          resolve(eventStat);
+        }, err => {
+          reject(err);
+        });
+      });
+    });
+  }
+
+  saveEventStatInfoLocally(data: EventStat){
+    this.storage.set(STORAGE_EVENT_STAT, data);
+  }
+
+  getEventStatInfoLocally(){
+    return this.storage.get(STORAGE_EVENT_STAT);
   }
 }

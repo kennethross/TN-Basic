@@ -111,11 +111,7 @@ export class UserTacServiceProvider {
     return request;
   }
 
-  // #########################################
-  // ############### Events  #################
-  // #########################################
-  public doGetAttendedEvent(authCreds): Observable<any> {
-
+  public doUpdateProfileInfo(authCreds, user): Observable<any> {
     let auth = authCreds;
 
     let headers : HttpHeaders = new HttpHeaders({
@@ -123,7 +119,34 @@ export class UserTacServiceProvider {
       "Content-Type": 'application/json',
     });
 
-    let url = this.getBaseUrl() + 'me/attended-events/';
+    let body = {
+
+    }
+
+    let url = this.getBaseUrl() + 'me/';
+
+    let request = this.http.post(url, body, {headers}).map( res => {
+      return res;
+    }).catch( error => {
+      return this.errorHandler.handleError(error);
+    });
+
+    return request;
+  }
+
+  // #########################################
+  // ############### Events  #################
+  // #########################################
+
+  public doGetOrganiseEventList(authCreds): Observable<any> {
+    let auth = authCreds;
+
+    let headers : HttpHeaders = new HttpHeaders({
+      "Authorization": auth.tokenType + " " + auth.accessToken,
+      "Content-Type": 'application/json',
+    });
+
+    let url = this.getBaseUrl() + 'events/all/';
 
     let request = this.http.get(url, {headers}).map( res => {
       return res;
@@ -143,6 +166,46 @@ export class UserTacServiceProvider {
     });
 
     let url = this.getBaseUrl() + "events/" + eventID + "/";
+
+    let request = this.http.get(url, {headers}).map( res => {
+      return res;
+    }).catch( error => {
+      return this.errorHandler.handleError(error);
+    });
+
+    return request;
+  }
+
+  public doGetEventStats(eventID, authCreds): Observable<any> {
+    let auth = authCreds;
+
+    let headers : HttpHeaders = new HttpHeaders({
+      "Authorization": auth.tokenType + " " + auth.accessToken,
+      "Content-Type": 'application/json',
+    });
+
+    let url = this.getBaseUrl() + "events/" + eventID + "/stats/";
+
+    let request = this.http.get(url, {headers}).map( res => {
+      return res;
+    }).catch( error => {
+      return this.errorHandler.handleError(error);
+    });
+
+    return request;
+  }
+
+  // #DEPRECATED
+  public doGetAttendedEvent(authCreds): Observable<any> {
+
+    let auth = authCreds;
+
+    let headers : HttpHeaders = new HttpHeaders({
+      "Authorization": auth.tokenType + " " + auth.accessToken,
+      "Content-Type": 'application/json',
+    });
+
+    let url = this.getBaseUrl() + 'me/attended-events/';
 
     let request = this.http.get(url, {headers}).map( res => {
       return res;

@@ -31,6 +31,8 @@ import { PreScanCheckinPage } from '../pages/pre-scan-checkin/pre-scan-checkin';
 import { PreScanCheckinPageModule } from '../pages/pre-scan-checkin/pre-scan-checkin.module';
 import { EventListPage } from '../pages/event-list/event-list';
 import { EventListPageModule } from '../pages/event-list/event-list.module';
+import { ProfileDetailPage } from '../pages/profile-detail/profile-detail';
+import { ProfileDetailPageModule } from '../pages/profile-detail/profile-detail.module';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
@@ -41,6 +43,7 @@ import { UserTacServiceProvider } from '../providers/user-tac-service/user-tac-s
 import { SimpleAlertProvider } from '../providers/simple-alert/simple-alert';
 import { IonicStorageModule } from '@ionic/storage';
 import { ErrorHandlerProvider } from '../providers/error-handler/error-handler';
+import { Profile } from './model/model';
 @NgModule({
   declarations: [
     MyApp,
@@ -62,6 +65,7 @@ import { ErrorHandlerProvider } from '../providers/error-handler/error-handler';
     CheckinInputFieldPageModule,
     PreScanCheckinPageModule,
     EventListPageModule,
+    ProfileDetailPageModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
   ],
@@ -82,6 +86,7 @@ import { ErrorHandlerProvider } from '../providers/error-handler/error-handler';
     CheckinInputFieldPage,
     PreScanCheckinPage,
     EventListPage,
+    ProfileDetailPage,
   ],
   providers: [
     StatusBar,

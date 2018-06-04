@@ -1,0 +1,39 @@
+page-profile-detail {
+    ion-header {
+        font-family: 'HelveticaNeue-condensedBold';
+    }
+
+    ion-content {
+        .div-avatar {
+            // background: green;
+            height: 40%;
+            border-bottom: 1px solid gray;
+            color: color($colors, primary-fontcolor);
+    
+            .div-img {
+                padding-top: 12%;
+                img {
+                    border-radius: 50%;
+                    width: 20%;
+                }
+            }
+    
+            .div-name {
+                padding-top: 6%;
+                font-family: 'HelveticaNeue-CondensedBold';
+                font-size: 20px;
+            }
+    
+            .div-job-title {
+                font-family: 'HelveticaNeue-light';
+                font-size: 14px;
+            }
+    
+            .div-title-company {
+                padding-top: 5%;
+                font-family: 'HelveticaNeue-light';
+                font-size: 16px;
+            }
+        }
+    }
+}
