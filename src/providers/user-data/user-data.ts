@@ -108,11 +108,12 @@ export class UserDataProvider {
         this.saveAuthCredsLocally(auth);
         this.saveUserCredsLocally(userCreds);
 
-        this.userTacService.doGetProfileInfo(auth).subscribe( res => {
-          let user : User = new User(res);
-          console.log("USER : ", user);
-          this.saveUserProfileInfoLocally(user);
-        });
+        // this.userTacService.doGetProfileInfo(auth).subscribe( res => {
+        //   let user : User = new User();
+        //   user.dataObject(res);
+        //   console.log("USER : ", user);
+        //   this.saveUserProfileInfoLocally(user);
+        // });
 
         resolve();
       }, err => {
@@ -150,7 +151,8 @@ export class UserDataProvider {
           let auth: AuthCredential = val;
 
           this.userTacService.doGetProfileInfo(auth).subscribe( res => {
-            let user : User = new User(res);
+            let user : User = new User();
+            user.dataObject(res);
             console.log(user);
             this.saveUserProfileInfoLocally(user);
             
@@ -174,6 +176,18 @@ export class UserDataProvider {
   // #######################################
   // ############# Event Data ##############
   // #######################################
+
+  isEventSelected() {
+    return new Promise<any>( isSelected => {
+      this.getEventInfoLocally().then( val => {
+        if(val){
+          isSelected(true);
+        }else{
+          isSelected(false);
+        }
+      });
+    });
+  }
 
   getEventList() {
     return new Promise<any>((resolve, reject) => {
@@ -208,7 +222,8 @@ export class UserDataProvider {
         let auth: AuthCredential = val;
         console.log(auth, eventID);
         this.userTacService.doGetEventSelectedInfo(eventID, auth).subscribe( res => {
-          let event: Event = new Event(res);
+          let event: Event = new Event();
+          event.dataObject(res);
           this.saveEventInfoLocally(event);
           resolve(event);
         }, err => {

@@ -8,7 +8,7 @@
           <img src="./assets/icon/eventLogo.png">
         </ion-col>
         <ion-col align-self-center text-left class="col-mid">
-          WeExpo
+         {{eventInfo.title}}
         </ion-col>
         <ion-col align-self-center col-2 class="col-right">
           <img src="./assets/icon/switch.png">
@@ -16,7 +16,12 @@
       </ion-row>
 
       <ion-row class="row-mid-header">
-          <img class="img-avatar" src="./assets/imgs/avatar.png" alt="Avatar">
+        <div *ngIf="userProfile.profile.avatarUrl">
+          <img class="img-avatar" [src]="userProfile.profile.avatarUrl">
+        </div>
+        <div>
+          <!-- <img class="img-avatar" src="./assets/imgs/avatar.png" alt="Avatar"> -->
+        </div>
       </ion-row>
 
       <ion-row class="row-bottom-header">
@@ -26,7 +31,8 @@
         </ion-col>
 
         <ion-col align-self-center text-center class="col-mid">
-          Kenneth Palermo
+          <!-- Kenneth Palermo -->
+          {{userProfile.firstName}} {{ userProfile.lastName}}
         </ion-col>
 
         <ion-col col-2 class="col-right">

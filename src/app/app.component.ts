@@ -11,6 +11,7 @@ import { EventListPage } from '../pages/event-list/event-list';
 import { UserDataProvider } from '../providers/user-data/user-data';
 import { SimpleAlertProvider } from '../providers/simple-alert/simple-alert';
 import { LoginControlProvider } from '../providers/login-control/login-control';
+import { User, Event } from './model/model';
 
 // import { RegistrationFormPage } from '../pages/registration-form/registration-form';
 // import { SuccessCheckedinPage } from '../pages/success-checkedin/success-checkedin';
@@ -40,6 +41,8 @@ export class MyApp {
 
   // rootPage: any = HomePage;
   rootPage: any;
+  userProfile: any;
+  eventInfo: any;
 
   mainPages: Array<PageInterface> = [
     { title: 'Dashboard', name: "", logsOut: false, component: DashboardPage, index: 0, icon:"wifi", selected: false },
@@ -54,6 +57,7 @@ export class MyApp {
     { title: '#CheckTacPoints', name: "", logsOut: false, component: HomePage, index: 0, icon:"Ribbons", selected: false },
     { title: 'Log Out', name: "logout", logsOut: false, component: null, index: 0, icon:"log-out", selected: false },
   ]
+
   constructor(
     public modalCtrl: ModalController,
     public userData: UserDataProvider,
@@ -63,8 +67,11 @@ export class MyApp {
     public statusBar: StatusBar, 
     public splashScreen: SplashScreen) {
     this.initializeApp();
-
+      console.log("App component called");
     // used for an example of ngFor and navigation
+
+    this.userProfile = new User();
+    this.eventInfo = new Event();
 
     this.loginSetup();
   }
@@ -95,14 +102,19 @@ export class MyApp {
 
   loginSetup(){
     this.loginCtrl.loginControl().then( res => {
-      // set rootpage after successfull login
-      // console.log("Setting the root page");
-
-      // show the eventlist first
+      
       this.showEventList().then( ()=> {
-        this.userData.getUserProfileInfo();
+
+        this.userData.getUserProfileInfo().then(() => {
+          this.configDataAfterLogin();
+        });
       });
     });
+  }
+
+  configDataAfterLogin(){
+    this.syncUserProfile();
+    this.syncEventInfo();
   }
 
   logOut(){
@@ -122,6 +134,17 @@ export class MyApp {
   }
 
   // ############################################
+  // ############### User Info ##################
+  // ############################################
+
+  syncUserProfile(){
+    this.userData.getUserProfileInfoLocally().then( val => {
+      console.log("User Profile : ", val);
+      this.userProfile = val;
+    });
+  }
+
+  // ############################################
   // ################# Event ####################
   // ############################################
 
@@ -134,6 +157,12 @@ export class MyApp {
       });
   
       showEvent.present();
+    });
+  }
+
+  syncEventInfo(){
+    this.userData.getEventInfoLocally().then( val => {
+      this.eventInfo = val;
     });
   }
 

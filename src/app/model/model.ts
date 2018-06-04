@@ -22,37 +22,211 @@ export class AuthCredential {
   }
 }
 
+export class Company {
+
+    itemID: string;
+    address: string;
+    bio: string;
+    category: string;
+    city: string;
+    contact: string;
+    country: string;
+    facebook: string;
+    fax: string;
+    phone: string;
+    email: string;
+    profileType: string;
+    profileUrl: string;
+    state: string;
+    title: string;
+    twitter: string;
+    website: string;
+    zipcode: string;
+    avatarUrl: string;
+    bannerUrl: string;
+
+    constructor() {
+        this.itemID = null;
+        this.address = null;
+        this.bio = null;
+        this.category = null;
+        this.city = null;
+        this.contact = null;
+        this.country = null;
+        this.facebook = null;
+        this.fax = null;
+        this.phone = null;
+        this.email = null;
+        this.profileType = null;
+        this.profileUrl = null;
+        this.state = null;
+        this.title = null;
+        this.twitter = null;
+        this.website = null;
+        this.zipcode = null;
+        this.avatarUrl = null;
+        this.bannerUrl = null;
+    }
+
+    dataObject(data: any){
+        if(data){
+            this.itemID = data.id;
+            this.address = data.address;
+            this.bio = data.bio;
+            this.category = data.category
+            this.city = data.city;
+            this.contact = data.contact;
+            this.country = data.country;
+            this.facebook = data.facebook;
+            this.fax = data.fax;
+            this.phone = data.phone;
+            this.email = data.email;
+            this.profileType = data.profile_type;
+            this.profileUrl = data.profile_url;
+            this.state = data.state;
+            this.title = data.title;
+            this.twitter = data.twitter;
+            this.website = data.website;
+            this.zipcode = data.zipcode;
+            this.avatarUrl = data.avatar_url;
+            this.bannerUrl = data.banner_url;
+        }
+    }
+}
+
 export class Event {
-  // itemID: string;
-  // profileUrl: string;
-  // title: string;
-  // bio:string;
-  // isActive: boolean;
-  // allowBio: boolean;
-  // email: string;
-  // website: string;
-  // location: string;
-  // venue: string;
-  // avatarUrl: string;
-  // bannerUrl: string;
+  itemID: string;
+  profileUrl: string;
+  title: string;
+  bio:string;
+  isActive: boolean;
+  allowBio: boolean;
+  email: string;
+  website: string;
+  location: string;
+  venue: string;
+  avatarUrl: string;
+  bannerUrl: string;
 
   constructor(values: object = {}){
-    Object.assign(this, values);
+    // Object.assign(this, values);
   }
 
   dataObject(data){
     if(data){
-      // this.itemID = data.id;
-      // this.title = data.title;
-      // this.avatarUrl = data.avatar_url;
-      // this.bannerUrl = data.banner_url;
+      this.itemID = data.id;
+      this.title = data.title;
+      this.avatarUrl = data.avatar_url;
+      this.bannerUrl = data.banner_url;
     }
   }
 }
 
-export class User {
+// export class User {
 
-  constructor(values: object = {}){
-    Object.assign(this, values);
+//   constructor(values: object = {}){
+//     Object.assign(this, values);
+//   }
+// }
+
+export class Profile {
+  mobile: string;
+  dob: string;
+  address: string;
+  bio: string;
+  avatarUrl: string;
+  bannerUrl: string;
+  gender: string;
+  city: string;
+  country: string;
+  work: string;
+  company: Company;
+  zipcode: string;
+  jobTitle: string;
+  companyID: string;
+
+  constructor() {
+      this.company = new Company();
+      this.companyID = "";
+  }
+
+  dataObject(data: any){
+      if(data){
+          this.mobile = data.mobile;
+          this.dob = data.dob;
+          this.address = data.address;
+          this.bio = data.bio;
+          this.avatarUrl = data.avatar;
+          this.gender = data.gender;
+          this.city = data.city;
+          this.bannerUrl = data.banner;
+          this.country = data.country;
+          this.work = data.work;
+          this.zipcode = data.zipcode;
+          this.jobTitle = data.job_title; 
+
+          console.log("Data Company ya all",data.company);
+          this.isNumber(data.company) === true ? this.companyID = data.company : this.company.dataObject(data.company);
+      }
+  }
+
+  apiDict() {
+      let dict = {
+          mobile: this.mobile,
+          dob: this.dob,
+          address: this.address,
+          avatar_url: this.avatarUrl,
+          banner_url: this.bannerUrl,
+          gender: this.gender,
+          city: this.city,
+          country: this.country,
+          work: this.work,
+          company: this.companyID,
+          zipcode: this.zipcode,
+          job_title: this.jobTitle,
+          bio: this.bio
+      }
+  }
+
+  isNumber (value) {
+      return typeof value === 'number' && isFinite(value);
+  };
+}
+
+export class User {
+  itemID: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  profile: Profile;
+
+  constructor(){
+      this.itemID = null;
+      this.firstName = null;
+      this.lastName = null;
+      this.email = null;
+      this.profile = new Profile();
+  }
+
+  dataObject(data: any){
+      if(data){
+          this.itemID = data.id;
+          this.firstName = data.first_name;
+          this.lastName = data.last_name;
+          this.email = data.email;
+
+          this.profile.dataObject(data.profile);
+      }
+  }
+
+  apiDict(){
+      let dict = {
+          first_name : this.firstName,
+          last_name : this.lastName,
+          email : this.email,
+          profile : this.profile.apiDict
+      }
+
+      return dict;
   }
 }
