@@ -9,6 +9,14 @@ page-event-list {
         font-family: 'HelveticaNeue-CondensedBold';
         font-size: 18px;
         color: gray;
+
+        ion-button {
+            background-color: green;
+        }
+
+        ion-icon {
+
+        }
     }
 
     ion-content {
@@ -18,7 +26,16 @@ page-event-list {
         }
         ion-item {
             border-style: none;
-            // margin-right: 10px;
+            // height: 100px;
+
+            ion-row {
+                height: 80px;
+            }
+
+            img {
+                margin-top: auto;
+                margin-bottom: auto;
+            }
 
             .div-event-title {
                 font-family: 'HelveticaNeue-CondensedBold';

@@ -18,6 +18,11 @@
       <ion-col align-self-center>
         Select Event
       </ion-col>
+      <ion-col text-right align-self-center>
+        <button ion-button icon-only (click)="closeTapped()">
+          <ion-icon name="close"></ion-icon>
+        </button>
+      </ion-col>
     </ion-row>
   </div>
 
@@ -27,25 +32,27 @@
 <ion-content>
   <ion-list> 
 
-    <ion-item no-lines *ngFor="let event of events">
-      <ion-row>
-        <ion-col col-3>
-          <img [src]="event.imageUrl">
-        </ion-col>
-        <ion-col>
-          <div class="div-event-title">
-            {{event.eventTitle}}
-          </div>
-          <div class="div-event-date">
-            {{event.date}}
-          </div>
-        </ion-col>
-        <ion-col col-1 text-right>
-          <ion-icon ios="ios-arrow-forward" md="md-arrow-forward"></ion-icon>
-        </ion-col>
-      </ion-row>
-      <div class="border-seperator"></div>
-    </ion-item>
+    <div *ngFor="let event of events">
+      <ion-item (click)="itemSelected(event)" no-lines>
+        <ion-row>
+          <ion-col align-self-center col-3>
+            <img [src]="event.avatar_url">
+          </ion-col>
+          <ion-col>
+            <div class="div-event-title">
+              {{event.title}}
+            </div>
+            <div class="div-event-date">
+              <!-- {{event.date}} -->
+            </div>
+          </ion-col>
+          <ion-col align-self-center col-1 text-right>
+            <ion-icon ios="ios-arrow-forward" md="md-arrow-forward"></ion-icon>
+          </ion-col>
+        </ion-row>
+        <div class="border-seperator"></div>
+      </ion-item>
+    </div>
   </ion-list>
 
 </ion-content>

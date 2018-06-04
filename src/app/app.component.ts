@@ -1,5 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Component, ViewChild, } from '@angular/core';
+import { Nav, Platform, ModalController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -7,6 +7,8 @@ import { HomePage } from '../pages/home/home';
 import { DashboardPage } from '../pages/dashboard/dashboard';
 import { VisitorsPage } from '../pages/visitors/visitors';
 import { KioskPage } from '../pages/kiosk/kiosk';
+import { EventListPage } from '../pages/event-list/event-list';
+import { UserDataProvider } from '../providers/user-data/user-data';
 import { SimpleAlertProvider } from '../providers/simple-alert/simple-alert';
 import { LoginControlProvider } from '../providers/login-control/login-control';
 
@@ -53,6 +55,8 @@ export class MyApp {
     { title: 'Log Out', name: "logout", logsOut: false, component: null, index: 0, icon:"log-out", selected: false },
   ]
   constructor(
+    public modalCtrl: ModalController,
+    public userData: UserDataProvider,
     public simpleAlert: SimpleAlertProvider,
     public loginCtrl: LoginControlProvider,
     public platform: Platform, 
@@ -92,8 +96,12 @@ export class MyApp {
   loginSetup(){
     this.loginCtrl.loginControl().then( res => {
       // set rootpage after successfull login
-      console.log("Setting the root page");
-      this.settingTheRootInTheMainMenu();
+      // console.log("Setting the root page");
+
+      // show the eventlist first
+      this.showEventList().then( ()=> {
+        this.userData.getUserProfileInfo();
+      });
     });
   }
 
@@ -111,6 +119,22 @@ export class MyApp {
   settingTheRootInTheMainMenu(){
     this.nav.setRoot(DashboardPage);
     // this.nav.setRoot(EventListPage);
+  }
+
+  // ############################################
+  // ################# Event ####################
+  // ############################################
+
+  showEventList(){
+    return new Promise<any>( resolve => {
+      let showEvent = this.modalCtrl.create(EventListPage);
+      showEvent.onDidDismiss(()=> {
+        this.settingTheRootInTheMainMenu();
+        resolve();
+      });
+  
+      showEvent.present();
+    });
   }
 
 }

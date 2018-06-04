@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { 
-  Headers, 
-  RequestOptions } from '@angular/http';
+  HttpClient,
+  HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 // import 'rxjs/add/observable/throw';
@@ -84,6 +83,70 @@ export class UserTacServiceProvider {
       return res;
     }).catch(error => {
       console.log("Error ",error);
+      return this.errorHandler.handleError(error);
+    });
+
+    return request;
+  }
+
+  // #########################################
+  // ########### User Profile  ###############
+  // #########################################  
+
+  public doGetProfileInfo(authCreds): Observable<any> {
+    let auth = authCreds;
+    let headers : HttpHeaders = new HttpHeaders({
+      "Authorization": auth.tokenType + " " + auth.accessToken,
+      "Content-Type": 'application/json',
+    });
+
+    let url = this.getBaseUrl() + 'me/';
+
+    let request = this.http.get(url, {headers}).map( res => {
+      return res;
+    }).catch( error => {
+      return this.errorHandler.handleError(error);
+    });
+
+    return request;
+  }
+
+  // #########################################
+  // ############### Events  #################
+  // #########################################
+  public doGetAttendedEvent(authCreds): Observable<any> {
+
+    let auth = authCreds;
+
+    let headers : HttpHeaders = new HttpHeaders({
+      "Authorization": auth.tokenType + " " + auth.accessToken,
+      "Content-Type": 'application/json',
+    });
+
+    let url = this.getBaseUrl() + 'me/attended-events/';
+
+    let request = this.http.get(url, {headers}).map( res => {
+      return res;
+    }).catch( error => {
+      return this.errorHandler.handleError(error);
+    });
+
+    return request;
+  }
+
+  public doGetEventSelectedInfo(eventID, authCreds): Observable<any> {
+    let auth = authCreds;
+
+    let headers : HttpHeaders = new HttpHeaders({
+      "Authorization": auth.tokenType + " " + auth.accessToken,
+      "Content-Type": 'application/json',
+    });
+
+    let url = this.getBaseUrl() + "events/" + eventID + "/";
+
+    let request = this.http.get(url, {headers}).map( res => {
+      return res;
+    }).catch( error => {
       return this.errorHandler.handleError(error);
     });
 

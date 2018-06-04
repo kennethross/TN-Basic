@@ -66,8 +66,8 @@ export class LoginPage {
     }
 
     this.userData.userLogIn(userLoginCreds).then( res => {
+      this.simpleAlert.dismissLoading();
       this.dismiss();
-      this.simpleAlert.showSuccessWithMessage("Successfully");
     }, err => {
       console.log(err);
       this.simpleAlert.showTitleWithMessage("Error : " + err.code, err.description );

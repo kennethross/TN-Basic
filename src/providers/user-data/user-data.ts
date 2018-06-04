@@ -2,11 +2,17 @@ import { Injectable } from '@angular/core';
 import { ModalController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import {
-  AuthCredential,} from '../../app/model/model';
+  AuthCredential,
+  Event,
+  User} from '../../app/model/model';
 import { UserTacServiceProvider } from '../../providers/user-tac-service/user-tac-service';
 
 const STORAGE_AUTHENTICATION_CREDS = "authenticationCredentials";
-const STORAGE_USER_CREDS = "userCredentials"
+const STORAGE_USER_CREDS = "userCredentials";
+const STORAGE_USER_INFO = "userInfo";
+const STORAGE_EVENT_LIST = "eventList";
+const STORAGE_EVENT_INFO = "eventInfo";
+
 /*
   Generated class for the UserDataProvider provider.
 
@@ -37,6 +43,26 @@ export class UserDataProvider {
     })
   }
 
+  // #######################################
+  // ############# Sync Data ###############
+  // #######################################
+
+  /**
+   * Sync Data
+   * 
+   * After select event,
+   * sync some of the data and persist it locally
+   * 
+   */
+
+   syncData(){
+    this.getUserProfileInfo();
+   }
+
+  // #######################################
+  // ########## User Credential ############
+  // #######################################
+
   saveUserCredsLocally(userCreds){
     this.storage.set(STORAGE_USER_CREDS, userCreds);
   }
@@ -52,11 +78,6 @@ export class UserDataProvider {
   // #######################################
   // ########### Authentication ############
   // #######################################
-
-    //Authentication
-  // 1. Save authentication
-  // 2. GET Authentication
-  // 3. Delete Authentication
 
   saveAuthCredsLocally(auth){
     var authCred = new AuthCredential();
@@ -86,6 +107,13 @@ export class UserDataProvider {
       this.userTacService.doLogin(userCreds).subscribe( auth => {
         this.saveAuthCredsLocally(auth);
         this.saveUserCredsLocally(userCreds);
+
+        this.userTacService.doGetProfileInfo(auth).subscribe( res => {
+          let user : User = new User(res);
+          console.log("USER : ", user);
+          this.saveUserProfileInfoLocally(user);
+        });
+
         resolve();
       }, err => {
         console.log("User data Managfer login : ", err);
@@ -108,5 +136,93 @@ export class UserDataProvider {
 
       });
     });
+  }
+
+  // #######################################
+  // ############ User Profile #############
+  // #######################################
+
+  getUserProfileInfo(){
+    return new Promise<any>((resolve, reject) => {
+      this.getAuthCredsLocally().then( val => {
+        // console.log("Profile info",val);
+        if(val){
+          let auth: AuthCredential = val;
+
+          this.userTacService.doGetProfileInfo(auth).subscribe( res => {
+            let user : User = new User(res);
+            console.log(user);
+            this.saveUserProfileInfoLocally(user);
+            
+            resolve(user);
+          }, err => {
+            reject(err);
+          })
+        }
+      });
+    });
+  }
+
+  saveUserProfileInfoLocally(user: User){
+    this.storage.set(STORAGE_USER_INFO, user);
+  }
+
+  getUserProfileInfoLocally(): Promise<any> {
+    return this.storage.get(STORAGE_USER_INFO);
+  }
+
+  // #######################################
+  // ############# Event Data ##############
+  // #######################################
+
+  getEventList() {
+    return new Promise<any>((resolve, reject) => {
+      this.getAuthCredsLocally().then( val => {
+        let auth: AuthCredential = val;
+
+        this.userTacService.doGetAttendedEvent(auth).subscribe( res => {
+
+          let data = res.data;
+
+          console.log(data);
+          this.saveEventListLocally(data);
+          resolve(data);
+        }, err => {
+          reject(err);
+        });
+      })
+    })
+  }
+
+  saveEventListLocally(data: Event[]){
+    this.storage.set(STORAGE_EVENT_LIST, data);
+  }
+
+  getEventListLocally(): Promise<any>{
+    return this.storage.get(STORAGE_EVENT_LIST);
+  }
+
+  getSelectedEventInfo(eventID){
+    return new Promise<any>((resolve, reject) => {
+      this.getAuthCredsLocally().then( val => {
+        let auth: AuthCredential = val;
+        console.log(auth, eventID);
+        this.userTacService.doGetEventSelectedInfo(eventID, auth).subscribe( res => {
+          let event: Event = new Event(res);
+          this.saveEventInfoLocally(event);
+          resolve(event);
+        }, err => {
+          reject(err);
+        });
+      });
+    });
+  }
+
+  saveEventInfoLocally(data){
+    this.storage.set(STORAGE_EVENT_INFO, data);
+  }
+
+  getEventInfoLocally(): Promise<Event> {
+    return this.storage.get(STORAGE_EVENT_INFO);
   }
 }
