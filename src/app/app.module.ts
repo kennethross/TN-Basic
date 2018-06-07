@@ -43,7 +43,6 @@ import { UserTacServiceProvider } from '../providers/user-tac-service/user-tac-s
 import { SimpleAlertProvider } from '../providers/simple-alert/simple-alert';
 import { IonicStorageModule } from '@ionic/storage';
 import { ErrorHandlerProvider } from '../providers/error-handler/error-handler';
-import { Profile } from './model/model';
 @NgModule({
   declarations: [
     MyApp,

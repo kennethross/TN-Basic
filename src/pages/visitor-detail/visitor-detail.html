@@ -110,7 +110,7 @@
             <ion-col>
               <span class="check-out-date">
                 <div *ngIf="visitor.lastCheckedOut">
-                  {{visitor.lastCheckedOut | date : 'yyyy/mm/dd'}} {{visitor.lastCheckedOutTime}}
+                  {{visitor.lastCheckedOut | date : 'yyyy/MM/dd'}} {{visitor.lastCheckedOutTime}}
                 </div>
                 <div *ngIf="!visitor.lastCheckedOut">
                   -
@@ -126,8 +126,10 @@
   <div class="div-button">
     <ion-row>
       <ion-col>
-          <button [hidden]="!checkIn" class="button-check-in" ion-button  (click)="checkTapped()" type="submit" full>Check In</button>
-          <button [hidden]="checkIn" class="button-check-out" ion-button (click)="checkTapped()" type="submit" full>Check Out</button>
+        <!-- show button check in -->
+        <button [hidden]="!checkIn" class="button-check-in" ion-button  (click)="checkTapped()" type="submit" full>Check In</button>
+        <!-- show button check out -->
+        <button [hidden]="checkIn" class="button-check-out" ion-button (click)="checkTapped()" type="submit" full>Check Out</button>
       </ion-col>
       <ion-col>
           <button class="button-print-label" ion-button  color="light" (click)="cancelTapped()" type="submit" full>Print Label</button>

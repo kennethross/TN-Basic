@@ -75,7 +75,7 @@
             <!-- </ion-row>
             <ion-row class="row-check-access"> -->
               <ion-col class="check-out-span"> O : 
-                <span *ngIf="visitor.lastCheckedOut">{{visitor.lastCheckedOut | date : 'yyyy/mm/dd'}} {{visitor.lastCheckedOutTime}}</span>
+                <span *ngIf="visitor.lastCheckedOut">{{visitor.lastCheckedOut | date : 'yyyy/MM/dd'}} {{visitor.lastCheckedOutTime}}</span>
                 <span *ngIf="!visitor.lastCheckedOut"> - </span>
               </ion-col>
             </ion-row>

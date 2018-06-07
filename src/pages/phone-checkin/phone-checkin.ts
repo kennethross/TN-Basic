@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { regexValidators } from '../validators/validator';
+// import { regexValidators } from '../validators/validator';
 
 import { EmailCheckinPage } from '../email-checkin/email-checkin';
 import { SuccessCheckedinPage } from '../success-checkedin/success-checkedin';

@@ -4,8 +4,6 @@ import {
   NavController, 
   NavParams, 
   ViewController } from 'ionic-angular';
-import  {
-  Event } from '../../app/model/model';
 import { SimpleAlertProvider } from '../../providers/simple-alert/simple-alert';
 import { UserDataProvider } from '../../providers/user-data/user-data';
 /**

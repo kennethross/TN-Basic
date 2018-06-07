@@ -4,7 +4,7 @@ import {
   NavController, 
   NavParams } from 'ionic-angular';
 import { UserDataProvider } from '../../providers/user-data/user-data';
-import { User, EventStat } from '../../app/model/model';
+import { EventStat } from '../../app/model/model';
 import { SimpleAlertProvider } from '../../providers/simple-alert/simple-alert';
 
 /**

@@ -12,7 +12,7 @@ import { ProfileDetailPage } from '../pages/profile-detail/profile-detail';
 import { UserDataProvider } from '../providers/user-data/user-data';
 import { SimpleAlertProvider } from '../providers/simple-alert/simple-alert';
 import { LoginControlProvider } from '../providers/login-control/login-control';
-import { User, Event, Profile } from './model/model';
+import { User, Event } from './model/model';
 
 // import { RegistrationFormPage } from '../pages/registration-form/registration-form';
 // import { SuccessCheckedinPage } from '../pages/success-checkedin/success-checkedin';

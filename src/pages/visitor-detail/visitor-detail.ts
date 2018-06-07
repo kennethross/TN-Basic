@@ -24,10 +24,30 @@ export class VisitorDetailPage {
     public navParams: NavParams) {
 
       this.visitor = this.navParams.data.visitor;
+      this.visitorCheckInOrCheckOut();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad VisitorDetailPage');
+  }
+
+  // #####################################
+  // ######## Check in Functions #########
+  // #####################################
+
+  visitorCheckInOrCheckOut() {
+    let checkInDate = this.visitor.lastCheckedIn;
+    let checkOutDate = this.visitor.lastCheckedOut;
+
+    console.log(checkInDate, checkOutDate);
+    
+    if(checkInDate === undefined){
+      this.checkIn = true;
+    } else if(checkInDate > checkOutDate){
+      this.checkIn = false;
+    }else {
+      this.checkIn = true;
+    }
   }
 
   checkTapped(){
