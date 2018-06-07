@@ -104,10 +104,12 @@ export class MyApp {
   loginSetup(){
     this.loginCtrl.loginControl().then( res => {
       
-      this.showEventList().then( ()=> {
+      this.showEventList(false).then( ()=> {
 
         this.userData.getUserProfileInfo().then(() => {
           this.configDataAfterLogin();
+        }, err => {
+          this.simpleAlert.showErrorWithMessage(err.description);
         });
       });
     });
@@ -154,15 +156,26 @@ export class MyApp {
   // ################# Event ####################
   // ############################################
 
-  showEventList(){
+  openEventListTapped(){
+    this.switchEvent();
+  }
+
+  showEventList(showCancelBtn){
     return new Promise<any>( resolve => {
-      let showEvent = this.modalCtrl.create(EventListPage);
+      let showEvent = this.modalCtrl.create(EventListPage, {showCancelBtn: showCancelBtn});
       showEvent.onDidDismiss(()=> {
         this.settingTheRootInTheMainMenu();
         resolve();
       });
   
       showEvent.present();
+    });
+  }
+
+  switchEvent(){
+    let showCancelBtn = true;
+    this.showEventList(showCancelBtn).then( () => {
+      this.syncEventInfo();
     });
   }
 

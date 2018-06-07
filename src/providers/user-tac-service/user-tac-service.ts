@@ -195,6 +195,31 @@ export class UserTacServiceProvider {
     return request;
   }
 
+  doGetSearchEventVisitors(eventID, queryText, authCreds): Observable<any> {
+    let auth = authCreds;
+
+    let headers : HttpHeaders = new HttpHeaders({
+      "Authorization": auth.tokenType + " " + auth.accessToken,
+      "Content-Type": 'application/json',
+    });
+
+    var urlParams = new URLSearchParams();
+    urlParams.set("event_id", eventID);
+    urlParams.set("fields", "email,id,user,first_name,last_name,name,last_checked_in,last_checked_out,group,tacn_no,remark,remark_json");
+    urlParams.set("name", queryText);
+
+    let url = this.getBaseUrl() + "admin/visitors/?" + urlParams;
+    // console.log()
+    let request = this.http.get(url, {headers}).map( res => {
+      console.log(res);
+      return res;
+    }).catch( error => {
+      return this.errorHandler.handleError(error);
+    });
+
+    return request;
+  }
+
   // #DEPRECATED
   public doGetAttendedEvent(authCreds): Observable<any> {
 

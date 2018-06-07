@@ -93,15 +93,21 @@ page-visitor-detail {
                 background: color($colors, primary);
                 color: white;
                 border-right: 1px solid white;
+                padding-right: 1px;
             }
 
             .button-check-out {
                 background: white;
                 color:color($colors, primary);
+                padding-left: 1px;
                 border-top: 1px solid color($colors, primary);
                 border-bottom: 1px solid color($colors, primary);
                 border-left: 1px solid color($colors, primary);
                 border-right: 1px solid color($colors, primary);
+                // border-top: 1px solid white;
+                // border-bottom: 1px solid white;
+                // border-left: 1px solid white;
+                // border-right: 1px solid white;
             }
 
             .button-print-label {

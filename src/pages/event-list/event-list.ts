@@ -23,6 +23,7 @@ import { UserDataProvider } from '../../providers/user-data/user-data';
 export class EventListPage {
 
   events: any[];
+  showCancelBtn: boolean;
 
   constructor(
     public simpleAlert: SimpleAlertProvider,
@@ -30,7 +31,9 @@ export class EventListPage {
     public viewCtrl: ViewController,
     public navCtrl: NavController, 
     public navParams: NavParams) {
-  
+      
+    this.showCancelBtn = this.navParams.data.showCancelBtn;
+    console.log(this.showCancelBtn);
     this.getDataFromServer();
   }
 
@@ -89,5 +92,6 @@ export class EventListPage {
 
   closeTapped() {
     console.log("Close tapped");
+    this.dismiss();
   }
 }

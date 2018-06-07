@@ -19,7 +19,7 @@
         Select Event
       </ion-col>
       <ion-col text-right align-self-center>
-        <button ion-button icon-only (click)="closeTapped()">
+        <button *ngIf="showCancelBtn" ion-button icon-only (click)="closeTapped()">
           <ion-icon name="close"></ion-icon>
         </button>
       </ion-col>

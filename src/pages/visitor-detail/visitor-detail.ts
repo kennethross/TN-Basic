@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Visitor } from '../../app/model/model';
 
 /**
  * Generated class for the VisitorDetailPage page.
@@ -16,8 +17,13 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class VisitorDetailPage {
 
   checkIn: boolean=true;
+  visitor: Visitor;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams) {
+
+      this.visitor = this.navParams.data.visitor;
   }
 
   ionViewDidLoad() {

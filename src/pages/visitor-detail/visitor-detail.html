@@ -17,16 +17,33 @@
 
   <div class="div-avatar">
     <div class="div-img" text-center>
-      <img src="./assets/imgs/avatar.png">
+      <div *ngIf="visitor.user.profile.avatarUrl">
+        <img [src]="visitor.user.profile.avatarUrl">
+      </div>
+      <div *ngIf="!visitor.user.profile.avatarUrl">
+        <img src="./assets/imgs/defaultAvatar.png">
+      </div>
     </div>
     <div class="div-name" text-center>
-      <span>Kenneth Ross Palermo</span>
+      <!-- <span>Kenneth Ross Palermo</span> -->
+      <div *ngIf="visitor.name">
+        {{visitor.name}}
+      </div>
+      <div *ngIf="!visitor.name">
+        {{visitor.firstName}} {{visitor.lastName}}
+      </div>
+
     </div>
     <div class="div-job-title" text-center>
-      <span>Software Developer</span>
+      <div *ngIf="visitor.user.profile.jobTitle">
+        {{visitor.user.profile.jobTitle}}
+      </div>
+      <div *ngIf="!visitor.user.profile.jobTitle">
+        -
+      </div>
     </div>
     <div class="div-title-company" text-center>
-        <span>Aspevo Tech LLC</span>
+        <span> - </span>
     </div>
   </div>
 
@@ -36,22 +53,30 @@
 
     <div class="div-detail-email">
       <span class="label-detail">Email</span> <br>
-      <span class="info-detail" style="text-decoration: underline;">kennethrosspalermo@gmail.com</span>
+      <span *ngIf="visitor.email" class="info-detail" style="text-decoration: underline;">{{visitor.email}}</span>
+      <span *ngIf="!visitor.email" class="info-detail"> - </span>
     </div>
 
     <div class="div-detail-phone">
       <span class="label-detail">Phone</span> <br>
-      <span class="info-detail" style="text-decoration: underline;">0132477554</span>
+      <span *ngIf="visitor.user.profile.mobile" class="info-detail" style="text-decoration: underline;">{{visitor.user.profile.mobile}}</span>
+      <span *ngIf="!visitor.user.profile.mobile" class="info-detail"> - </span>
     </div>
 
     <div class="div-detail-facebook">
       <span class="label-detail">Facebook</span> <br>
-      <span class="info-detail">face.book.com</span>
+      <span *ngIf="visitor.user.profile.facebook" class="info-detail">{{visitor.user.profile.facebook}}</span>
+      <span *ngIf="!visitor.user.profile.facebook" class="info-detail"> - </span>
     </div>
 
     <div class="div-detail-location">
       <span class="label-detail">Location</span> <br>
-      <span class="info-detail">Kuala Lumpur, Malaysia</span>
+      <span *ngIf="visitor.user.profile.city || visitor.user.profile.country" class="info-detail">
+        {{visitor.user.profile.city}}, {{visitor.user.profile.country}}
+      </span>
+      <span *ngIf="!visitor.user.profile.city && !visitor.user.profile.country" class="info-detail">
+          -
+        </span>
     </div>
 
     <div class="div-detail-checked">
@@ -64,7 +89,12 @@
             </ion-col>
             <ion-col>
               <span class="check-in-date">
-                2018-05-01, 08:45AM
+                <div *ngIf="visitor.lastCheckedIn">
+                  {{visitor.lastCheckedIn | date : 'yyyy/MM/dd'}} {{visitor.lastCheckedInTime}}
+                </div>
+                <div *ngIf="!visitor.lastCheckedIn">
+                  -
+                </div>
               </span>
             </ion-col>
           </ion-row>
@@ -79,7 +109,12 @@
             </ion-col>
             <ion-col>
               <span class="check-out-date">
-                2018-05-01, 10:45PM
+                <div *ngIf="visitor.lastCheckedOut">
+                  {{visitor.lastCheckedOut | date : 'yyyy/mm/dd'}} {{visitor.lastCheckedOutTime}}
+                </div>
+                <div *ngIf="!visitor.lastCheckedOut">
+                  -
+                </div>
               </span>
             </ion-col>
           </ion-row>

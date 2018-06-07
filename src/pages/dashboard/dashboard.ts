@@ -5,6 +5,7 @@ import {
   NavParams } from 'ionic-angular';
 import { UserDataProvider } from '../../providers/user-data/user-data';
 import { User, EventStat } from '../../app/model/model';
+import { SimpleAlertProvider } from '../../providers/simple-alert/simple-alert';
 
 /**
  * Generated class for the DashboardPage page.
@@ -21,8 +22,10 @@ import { User, EventStat } from '../../app/model/model';
 export class DashboardPage {
 
   eventStat: EventStat;
+  visitorAttendedPercentage: any = 0;
 
   constructor(
+    public simpleAlert: SimpleAlertProvider,
     public userData: UserDataProvider,
     public navCtrl: NavController, 
     public navParams: NavParams) {
@@ -42,8 +45,10 @@ export class DashboardPage {
       this.userData.getEventStatsInfo(eventID).then( res => {
         console.log(res);
         this.eventStat = res;
+        this.calculateVisitorsAttendedPercentage();
       }, err => {
         console.log(err);
+        this.simpleAlert.showErrorWithMessage(err.description);
       });
     })
   }
@@ -51,7 +56,13 @@ export class DashboardPage {
   getEventStatLocally(){
     this.userData.getEventStatInfoLocally().then( event => {
       this.eventStat = event;
+      this.calculateVisitorsAttendedPercentage();
     })
   }
 
+  calculateVisitorsAttendedPercentage(){
+    let temp = (parseInt(this.eventStat.activeVisitors) / parseInt(this.eventStat.totalVisitors)) * 100;
+    console.log(temp);
+    this.visitorAttendedPercentage = temp.toFixed(2);
+  }
 }

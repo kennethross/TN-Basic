@@ -32,7 +32,74 @@
 
 
 <ion-content>
+
   <ion-list>
+
+    <ion-item-group>
+
+      <ion-item-divider color="light">
+        <ion-label>
+          Visitors
+        </ion-label>
+      </ion-item-divider>
+
+      <div class="item-contact" (click)="openVisitorDetail(visitor)" *ngFor="let visitor of visitors">
+        <ion-row class="row-main">
+          <ion-col class="col-avatar" col-3 text-center>
+            <img class="img-avatar" [hidden]="visitor.user.profile.avatarUrl" src="./assets/imgs/defaultAvatar.png" alt="Avatar">
+            <img class="img-avatar" [hidden]="!visitor.user.profile.avatarUrl" [src]="visitor.user.profile.avatarUrl" alt="Avatar">
+          </ion-col>
+          <ion-col class="col-personal-details">
+            <ion-row class="row-visitor-name">
+              <div *ngIf="visitor.name">
+                {{visitor.name}}
+              </div>
+              <div *ngIf="!visitor.name">
+                {{visitor.firstName}} {{visitor.lastName}}
+              </div>
+            </ion-row> 
+            <ion-row class="row-job-title">
+              <div *ngIf="visitor.user.profile.jobTitle">
+                {{visitor.user.profile.jobTitle}}
+              </div>
+              <div *ngIf="!visitor.user.profile.jobTitle">
+                -
+              </div>
+            </ion-row>
+
+            <ion-row class="row-check-access">
+              <ion-col class="check-in-span">I : 
+                <span *ngIf="visitor.lastCheckedIn !== null">{{visitor.lastCheckedIn | date : 'yyyy/MM/dd'}} {{visitor.lastCheckedInTime}}</span>
+                <span *ngIf="!visitor.lastCheckedIn"> - </span>
+              </ion-col>
+            <!-- </ion-row>
+            <ion-row class="row-check-access"> -->
+              <ion-col class="check-out-span"> O : 
+                <span *ngIf="visitor.lastCheckedOut">{{visitor.lastCheckedOut | date : 'yyyy/mm/dd'}} {{visitor.lastCheckedOutTime}}</span>
+                <span *ngIf="!visitor.lastCheckedOut"> - </span>
+              </ion-col>
+            </ion-row>
+
+          </ion-col>
+          <ion-col class="col-print-badge" col-2>
+            <button (click)="openPrintBadge(visitor);$event.stopPropagation();">
+              <ion-row class="row-img">
+                <img class="img-badge" src="./assets/icon/printBadge.png">
+              </ion-row>
+              <ion-row   align-items-center class="row-text">
+                <ion-col>
+                  Badge
+                </ion-col>
+              </ion-row>
+            </button>
+
+          </ion-col>
+        </ion-row>
+      </div>
+    </ion-item-group>
+  </ion-list>
+
+  <!-- <ion-list>
     <ion-item-group *ngFor="let group of groupedContacts">
 
       <ion-item-divider color="light">
@@ -45,7 +112,7 @@
         
         <ion-row class="row-main">
           <ion-col class="col-avatar" col-3 text-center>
-            <img class="img-avatar" src="./assets/imgs/avatar.png" alt="Avatar">
+            <img class="img-avatar" src="./assets/imgs/defaultAvatar.png" alt="Avatar">
           </ion-col>
           <ion-col class="col-personal-details">
             <ion-row class="row-visitor-name">
@@ -77,7 +144,7 @@
       </div>
   
     </ion-item-group>
-  </ion-list>
+  </ion-list> -->
 </ion-content>
 
 
@@ -87,7 +154,12 @@
       <ion-col text-center col-5>
         <img src="./assets/imgs/dashboard/visitors.png"> &nbsp;
           <!-- <ion-icon item-start name="people"></ion-icon> -->
-        1211/1518
+        <span *ngIf="!eventStat.totalTac">
+          - / -
+        </span>
+        <span *ngIf="eventStat.totalTac">
+          {{eventStat.activeVisitors}} / {{eventStat.totalVisitors}}
+        </span>
       </ion-col>
       <ion-col  text-left>
         G 1000

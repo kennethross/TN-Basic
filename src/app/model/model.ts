@@ -304,3 +304,48 @@ export class User {
       return dict;
   }
 }
+
+export class Visitor {
+    itemID: string;
+    lastUTC: string;
+    remarkJson: any;
+    tacNo: string;
+    name: string;
+    firstName: string;
+    lastName: string;
+    group: any;
+    remark: null;
+    email: string;
+    eventID: string;
+    lastCheckedIn: Date;
+    lastCheckedInTime: string;
+    lastCheckedOut: Date;
+    lastCheckedOutTime: string;
+
+    user: User;
+
+    constructor() {
+        this.user = new User();
+    }
+
+    dataObject(data){
+        this.itemID = data.id;
+        this.lastUTC = data.last_utc;
+        this.remarkJson = data.remark_json;
+        this.tacNo = data.tac_no;
+        this.name = data.name;
+        this.firstName = data.first_name;
+        this.lastName = data.last_name;
+        this.group = data.group;
+        this.remark = data.remark;
+        this.email = data.email;
+        this.lastCheckedIn = data.last_checked_in !== 0 ? new Date(data.last_checked_in * 1000) : undefined;
+        this.lastCheckedOut = data.last_checked_out !== 0 ? new Date(data.last_checked_out * 1000) : undefined;
+        this.lastCheckedInTime = data.last_checked_in !== 0 ? (this.lastCheckedIn.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })).replace(/ /g,'') : undefined;
+        this.lastCheckedOutTime = data.last_checked_out !== 0 ? (this.lastCheckedOut.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })).replace(/ /g,'') : undefined;
+
+        if(data.user){
+            this.user.dataObject(data.user);
+        }
+    }
+}

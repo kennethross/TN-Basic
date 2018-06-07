@@ -5,7 +5,8 @@ import {
   AuthCredential,
   Event,
   User,
-  EventStat} from '../../app/model/model';
+  EventStat,
+  Visitor} from '../../app/model/model';
 import { UserTacServiceProvider } from '../../providers/user-tac-service/user-tac-service';
 
 const STORAGE_AUTHENTICATION_CREDS = "authenticationCredentials";
@@ -14,6 +15,7 @@ const STORAGE_USER_INFO = "userInfo";
 const STORAGE_EVENT_LIST = "eventList";
 const STORAGE_EVENT_INFO = "eventInfo";
 const STORAGE_EVENT_STAT = "eventStat";
+const STORAGE_VISITOR_LIST = "visitorList";
 
 /*
   Generated class for the UserDataProvider provider.
@@ -258,6 +260,7 @@ export class UserDataProvider {
         this.userTacService.doGetEventStats(eventID, auth).subscribe( res => {
           let eventStat: EventStat = new EventStat();
           eventStat.dataObject(res);
+          this.saveEventStatInfoLocally(eventStat);
           resolve(eventStat);
         }, err => {
           reject(err);
@@ -272,5 +275,33 @@ export class UserDataProvider {
 
   getEventStatInfoLocally(){
     return this.storage.get(STORAGE_EVENT_STAT);
+  }
+
+  getSelectedEventVisitors(eventID, queryText){
+    return new Promise<any>((resolve, reject) => {
+      this.getAuthCredsLocally().then( val => {
+        let auth: AuthCredential = val;
+
+        this.userTacService.doGetSearchEventVisitors(eventID, queryText, auth).subscribe( res => {
+          let data = res.data;
+
+          var visitors: Visitor[] = [];
+
+          for (var i=0; i < data.length; i++){
+            let vis: Visitor = new Visitor();
+            vis.dataObject(data[i]);
+
+            visitors.push(vis);
+          }
+
+          // this.storage.set(STORAGE_VISITOR_LIST, visitors);
+          console.log("Visitors : ", visitors);
+
+          resolve(visitors);
+        }, err => {
+          reject(err);
+        });
+      });
+    });
   }
 }
